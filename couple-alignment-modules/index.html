@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Couple Alignment 模块网页归档</title>
+  <style>
+    :root {
+      --bg: #09111f;
+      --card: rgba(14, 23, 42, 0.82);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5eef8;
+      --muted: #95a6c4;
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --shadow: 0 24px 64px rgba(2, 6, 23, 0.45);
+      --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.14), transparent 25%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.14), transparent 25%),
+        linear-gradient(180deg, #060a16 0%, #09111f 100%);
+    }
+    .page { width: min(1280px, calc(100vw - 48px)); margin: 0 auto; padding: 32px 0 56px; }
+    .hero {
+      padding: 28px 30px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(7, 13, 28, 0.94), rgba(17, 25, 47, 0.86));
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--accent);
+      border: 1px solid rgba(125, 211, 252, 0.24);
+      background: rgba(10, 17, 33, 0.72);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+    h1 { margin: 18px 0 12px; font-size: clamp(34px, 5vw, 54px); line-height: 1.06; }
+    p { margin: 0; color: var(--muted); line-height: 1.8; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+    .card {
+      display: block;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: rgba(125, 211, 252, 0.28); background: rgba(16, 26, 48, 0.92); }
+    .code {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(125, 211, 252, 0.08);
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .card h2 { margin: 16px 0 10px; font-size: 24px; }
+    .footer { margin-top: 16px; font-size: 13px; color: var(--muted); text-align: center; }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } .page { width: min(100vw - 24px, 1280px); padding-top: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">Project-Level Archive</div>
+      <h1>Couple Alignment 模块网页归档</h1>
+      <p>这里汇总了 `research/couple-alignment/03_question_bank/modules` 目录下的全部模块网页版本。每个页面都保留原始 Markdown 信息，并支持搜索、折叠、编号跳转、结果记录与实时 YAML。</p>
+    </section>
+    <section class="grid">
+      <a class="card" href="../M01_关系目标-婚姻意义-承诺/index.html">
+        <div class="code">M01</div>
+        <h2>M01 关系目标、婚姻意义与承诺</h2>
+        <p>M01_关系目标-婚姻意义-承诺.md</p>
+      </a>
+      <a class="card" href="../M02_情绪需求-沟通-冲突-修复/index.html">
+        <div class="code">M02</div>
+        <h2>M02 情绪需求、沟通、冲突与修复</h2>
+        <p>M02_情绪需求-沟通-冲突-修复.md</p>
+      </a>
+      <a class="card" href="../M03_金钱-消费-资源-共同决策/index.html">
+        <div class="code">M03</div>
+        <h2>M03 金钱、消费、资源与共同决策</h2>
+        <p>M03_金钱-消费-资源-共同决策.md</p>
+      </a>
+      <a class="card" href="../M04_原生家庭-家庭边界-婚礼习俗/index.html">
+        <div class="code">M04</div>
+        <h2>M04 原生家庭、家庭边界与婚礼习俗</h2>
+        <p>M04_原生家庭-家庭边界-婚礼习俗.md</p>
+      </a>
+      <a class="card" href="../M05_孩子-共同养育-家庭分工/index.html">
+        <div class="code">M05</div>
+        <h2>M05 孩子、共同养育与家庭分工</h2>
+        <p>M05_孩子-共同养育-家庭分工.md</p>
+      </a>
+      <a class="card" href="../M06_生活方式-职业城市-忠诚与长期风险/index.html">
+        <div class="code">M06</div>
+        <h2>M06 生活方式、职业城市选择、忠诚与长期风险</h2>
+        <p>M06_生活方式-职业城市-忠诚与长期风险.md</p>
+      </a>
+    </section>
+    <p class="footer">生成位置：d:/marriage/web_archive/couple-alignment-modules/index.html</p>
+  </div>
+</body>
+</html>

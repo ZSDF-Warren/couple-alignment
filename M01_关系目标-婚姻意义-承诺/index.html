@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M01 关系目标、婚姻意义与承诺</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-elev: rgba(17, 24, 39, 0.82);
+      --bg-soft: rgba(30, 41, 59, 0.64);
+      --card: rgba(15, 23, 42, 0.78);
+      --card-strong: rgba(15, 23, 42, 0.94);
+      --line: rgba(148, 163, 184, 0.16);
+      --line-strong: rgba(148, 163, 184, 0.3);
+      --text: #e5eef8;
+      --muted: #93a4bf;
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --accent-3: #34d399;
+      --danger: #fda4af;
+      --warning: #fbbf24;
+      --shadow: 0 24px 64px rgba(2, 6, 23, 0.55);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 12px;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 26%),
+        radial-gradient(circle at bottom center, rgba(52, 211, 153, 0.10), transparent 28%),
+        linear-gradient(180deg, #060a16 0%, #0b1020 42%, #0e1528 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(125, 211, 252, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,0.7), transparent 86%);
+      opacity: 0.4;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1440px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(8, 15, 31, 0.92), rgba(18, 27, 51, 0.85));
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -18% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(125, 211, 252, 0.18), transparent 60%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      border-radius: 999px;
+      background: rgba(10, 17, 33, 0.72);
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 16px rgba(125, 211, 252, 0.65);
+    }
+
+    .hero h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(125, 211, 252, 0.32);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.16), rgba(167, 139, 250, 0.18));
+      border-color: rgba(125, 211, 252, 0.35);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 22px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(8, 14, 28, 0.82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .sidebar h2,
+    .main h2,
+    .main h3,
+    .main h4 {
+      margin: 0;
+    }
+
+    .sidebar .block + .block {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .sidebar-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .toc {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: #dbe5f5;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      line-height: 1.45;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .toc a:hover,
+    .toc a.active {
+      border-color: rgba(125, 211, 252, 0.26);
+      background: rgba(125, 211, 252, 0.08);
+      transform: translateX(2px);
+    }
+
+    .search-box {
+      display: grid;
+      gap: 10px;
+    }
+
+    .search-box input,
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(3, 7, 18, 0.72);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .search-box input:focus,
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(125, 211, 252, 0.42);
+      box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.1);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .tag-cloud,
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      color: #d7e5f7;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .chip:hover,
+    .chip.active {
+      border-color: rgba(125, 211, 252, 0.35);
+      background: rgba(125, 211, 252, 0.1);
+    }
+
+    .main {
+      display: grid;
+      gap: 22px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(9, 15, 29, 0.82);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .panel-header {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(125, 211, 252, 0.05), rgba(0,0,0,0));
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-title h2 {
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel-title p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .panel-body {
+      padding: 24px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .grid.two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-card,
+    .section-card,
+    .subsection-card,
+    .reference-card,
+    .yaml-card,
+    .workspace-card {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .info-card h3,
+    .section-card h3,
+    .subsection-card h3,
+    .workspace-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .info-card p,
+    .section-card p,
+    .subsection-card p,
+    .workspace-card p,
+    .reference-card p,
+    .subsection-card li,
+    .item-content li,
+    .section-list li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .section-list,
+    .inline-list {
+      display: grid;
+      gap: 10px;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .item-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-group {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .section-group:first-child {
+      margin-top: 0;
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .group-head h3 {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .muted-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+    }
+
+    .accordion {
+      display: grid;
+      gap: 14px;
+    }
+
+    details.item,
+    details.subsection {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+      transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+
+    details.item:hover,
+    details.subsection:hover {
+      border-color: rgba(125, 211, 252, 0.26);
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    details.item[open],
+    details.subsection[open] {
+      border-color: rgba(125, 211, 252, 0.32);
+      background: rgba(10, 17, 34, 0.95);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .item-head,
+    .subsection-head {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .item-code {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, 0.24);
+      color: var(--accent);
+      background: rgba(125, 211, 252, 0.08);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .item-title-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-title {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .item-body,
+    .subsection-body {
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .item-content,
+    .subsection-content {
+      display: grid;
+      gap: 10px;
+      padding-top: 16px;
+    }
+
+    .item-content p,
+    .subsection-content p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .key-line {
+      padding-left: 14px;
+      border-left: 3px solid rgba(125, 211, 252, 0.28);
+    }
+
+    code.inline {
+      font-family: var(--mono);
+      font-size: 0.92em;
+      padding: 2px 8px;
+      border-radius: 8px;
+      color: #d9f4ff;
+      background: rgba(125, 211, 252, 0.1);
+      border: 1px solid rgba(125, 211, 252, 0.14);
+    }
+
+    a.code-jump {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      transition: transform 0.16s ease, filter 0.16s ease;
+    }
+
+    a.code-jump:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+
+    .jump-flash {
+      animation: jumpFlash 1.5s ease;
+      box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.45), 0 0 26px rgba(125, 211, 252, 0.16);
+    }
+
+    @keyframes jumpFlash {
+      0% { box-shadow: 0 0 0 0 rgba(125, 211, 252, 0.65), 0 0 28px rgba(125, 211, 252, 0.35); }
+      100% { box-shadow: 0 0 0 0 rgba(125, 211, 252, 0), 0 0 0 rgba(125, 211, 252, 0); }
+    }
+
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(1, 5, 15, 0.9);
+      color: #dce9fb;
+      overflow: auto;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.wide {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 13px;
+      color: #d8e4f8;
+      letter-spacing: 0.02em;
+    }
+
+    .field textarea {
+      min-height: 106px;
+      resize: vertical;
+    }
+
+    .radar-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr) 38px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slider-row span,
+    .slider-row output {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .slider-row input[type="range"] {
+      width: 100%;
+      accent-color: #7dd3fc;
+    }
+
+    canvas {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      background: radial-gradient(circle at center, rgba(125, 211, 252, 0.08), rgba(3,7,18,0.2) 60%, rgba(3,7,18,0.8));
+      border: 1px solid var(--line);
+      padding: 10px;
+    }
+
+    .reference-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .reference-card {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .reference-index {
+      min-width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(125, 211, 252, 0.12);
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .raw-drawer {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .empty-state {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px dashed rgba(148, 163, 184, 0.3);
+      color: var(--muted);
+      text-align: center;
+      display: none;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    @media (max-width: 1120px) {
+      .layout,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .stats,
+      .grid.two,
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100vw - 24px, 1440px);
+        padding-top: 14px;
+      }
+
+      .hero,
+      .panel-header,
+      .panel-body,
+      .sidebar {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .stats,
+      .grid.two,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slider-row {
+        grid-template-columns: 1fr;
+      }
+
+      .item-head,
+      .subsection-head,
+      .panel-title {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script id="source-md" type="text/plain"># M01 关系目标、婚姻意义与承诺（架构重构版）
+
+## 模块定位
+这个模块不是为了提前判决“该不该结婚”，而是帮助两个人先回答：我们为什么在一起、婚姻在我心里到底是什么、我把伴侣放在怎样的位置、我希望这段关系最终长成什么样。很多伴侣表面上都说“想稳定”，但真正冲突的常常是：对承诺的理解不同、对优先级的排序不同、对安全感和自由感的来源不同。
+
+## 使用方式
+1. 先各自独立填写镜像问卷，不要边填边解释自己。
+2. 只挑分歧最大或最说不清的 3-5 题进入讨论。
+3. 根据分歧类型选对应情景讨论卡，把抽象立场放进具体处境。
+4. 讨论卡住时，再从深聊手册里选 2-3 个追问，不要一次问完。
+5. 最后填写结果记录页，并给风险雷达打分，让这次讨论留下结论和复谈点。
+
+## 模块目标
+帮助伴侣理解：你们期待的是同一种关系，还是只是都在说“想要一段好关系”但想象完全不同。重点覆盖婚姻意义、承诺理解、关系优先级、被爱的方式、对不确定性的承受度，以及你们能否对长期未来形成足够清楚的共同想象。
+
+## 关键分歧地图
+1. 把婚姻理解为责任与稳定，还是陪伴与成长。
+2. 伴侣关系在自己人生中的优先级到底排第几。
+3. 对承诺的理解是“无条件长期坚持”，还是“持续评估后继续选择”。
+4. 安全感更多来自亲密确认，还是来自自由、边界和不被吞没。
+5. 关系里最怕失去的是爱、信任、尊重、自由，还是共同未来。
+6. 高风险往往不在“立场不同”，而在于两个人都以为自己谈的是婚姻，其实谈的不是同一个东西。
+
+## 一、镜像问卷
+
+### A. 核心问卷（先做）
+
+#### `M01-Q01 | 婚姻意义排序`
+- 题目：结婚对我首先意味着什么？请从“陪伴、责任、稳定、成长、家庭、社会认可、孩子、共同生活”中排序前 3 项。
+- 回答方式：排序 + 简短说明。
+- 对照重点：你们是在争“结不结婚”，还是在争“婚姻到底是干什么的”。
+- 若差异大，建议转入：`M01-S02`、`M01-D01`、`M01-D07`。
+
+#### `M01-Q02 | 你心里好的婚姻长什么样`
+- 题目：我心里“好的婚姻”最像什么？请用 3-5 句话描述。
+- 回答方式：开放回答。
+- 对照重点：一方讲的是稳定秩序，另一方讲的是深度连接时，往往不是谁错，而是模板不同。
+- 若差异大，建议转入：`M01-S01`、`M01-D03`、`M01-D09`。
+
+#### `M01-Q03 | 这段关系里我最想得到什么`
+- 题目：在伴侣关系里，我最想得到的 3 样东西是什么？
+- 回答方式：列出 3 项并排序。
+- 对照重点：你要的是被爱、被理解、被选择、被陪伴，还是一起建设未来。
+- 若差异大，建议转入：`M01-D03`、`M01-D05`。
+
+#### `M01-Q04 | 我最害怕失去什么`
+- 题目：在长期关系里，我最害怕失去的是什么？
+- 回答方式：列出前 3 项并说明原因。
+- 对照重点：这题常常直接暴露安全感系统，而不只是偏好。
+- 若差异大，建议转入：`M01-S03`、`M01-D02`、`M01-D08`。
+
+#### `M01-Q05 | 关系优先级排序`
+- 题目：如果伴侣、工作、父母、孩子的需求发生冲突，我直觉里的优先级排序是什么？
+- 回答方式：排序 + 举一个现实场景。
+- 对照重点：你们争的可能不是“谁更重要”，而是“不同情境下谁先被考虑”。
+- 若差异大，建议转入：`M01-S01`、`M01-S05`、`M01-D04`。
+
+#### `M01-Q06 | 我怎样理解承诺`
+- 题目：我更认同哪句话：A. 爱是感觉；B. 爱也是责任；C. 爱首先是选择；D. 爱首先是理解。
+- 回答方式：单选 + 说明为什么。
+- 对照重点：这题不是语言偏好，而是看你们如何理解“在关系里继续留下来”。
+- 若差异大，建议转入：`M01-S02`、`M01-D06`、`M01-D09`。
+
+#### `M01-Q07 | 平淡期如何维持连接`
+- 题目：当关系进入平淡期时，我最希望我们如何维持连接？
+- 回答方式：开放回答，最好具体到行动。
+- 对照重点：有人需要高频确认，有人只要稳定陪伴；差异不处理，容易被误读成“不在乎”。
+- 若差异大，建议转入：`M01-S05`、`M01-D05`。
+
+#### `M01-Q08 | 五年后我希望这段关系的样子`
+- 题目：我希望这段关系五年后最明显的样子是什么？
+- 回答方式：开放回答。
+- 对照重点：这题决定你们谈的是短期恋爱延续，还是长期共同生活。
+- 若差异大，建议转入：`M01-S01`、`M01-S03`、`M01-D08`。
+
+### B. 扩展问卷（有余力再做）
+
+#### `M01-E01 | 结婚是不是人生必选项`
+- 题目：我是否把结婚当作人生必选项？为什么？
+- 回答方式：单选 + 说明。
+- 对照重点：有些人想要关系，不一定想要婚姻制度本身。
+
+#### `M01-E02 | 我理想中的关系角色`
+- 题目：我理想中的伴侣关系，是更像朋友、战友、爱人还是家人？
+- 回答方式：排序。
+- 对照重点：关系角色不同，期待的陪伴方式也会不同。
+
+#### `M01-E03 | 我能接受多大的不确定性`
+- 题目：我能接受关系里的不确定性到什么程度？
+- 回答方式：5 分量表 + 举例。
+- 对照重点：这题有助于理解一方为什么更想尽快确认、领证或做决定。
+
+#### `M01-E04 | 我对离婚 / 分开的基本态度`
+- 题目：我对“离婚 / 分开”这件事的基本态度是什么？
+- 回答方式：开放回答。
+- 对照重点：不是要谈分开，而是看你们如何理解承诺的底线和退出机制。
+
+#### `M01-E05 | 被放在心上的证明`
+- 题目：我希望伴侣如何证明“你把我放在心上”？
+- 回答方式：列出 3 个最有效的行为。
+- 对照重点：被爱不是抽象词，而是可被看见的动作。
+
+#### `M01-E06 | 什么让我愿意继续投入`
+- 题目：哪些事会让我觉得“这段关系值得继续投入”？
+- 回答方式：开放回答。
+- 对照重点：这题能区分你们关系里的主要续航燃料是什么。
+
+## 二、情景讨论卡
+
+### `M01-S01 | 很相爱，但未来规划差异很大`
+- 情景：你们感情很好，但未来规划差异很大，一个想稳定定居，一个想持续探索和变动。
+- 先对齐的争点：这是生活方式差异，还是对关系稳定性的理解不同。
+- 建议先问：你想要的稳定，究竟是地理位置稳定，还是关系本身稳定？
+- 可转入深聊手册：`D04`、`D05`、`D08`。
+- 高风险信号：把对方的未来想象直接解释成“不够爱我”或“没责任感”。
+
+### `M01-S02 | 对婚姻制度本身理解不同`
+- 情景：一方认为“结婚是承诺”，另一方认为“只要相爱不领证也可以”。
+- 先对齐的争点：你们争的是形式、责任、法律保障，还是被选择感。
+- 建议先问：如果不领证 / 一定要领证，分别最能保护你什么？
+- 可转入深聊手册：`D01`、`D06`、`D09`。
+- 高风险信号：把不同的婚姻观直接上纲为“不认真”或“太现实”。
+
+### `M01-S03 | 很相爱，但孩子议题不确定`
+- 情景：两个人现在很相爱，但都不确定要不要孩子，或其中一方很确定、另一方很迟疑。
+- 先对齐的争点：这是时间差异、底线差异，还是对未来生活模板的差异。
+- 建议先问：如果这个问题几年后仍没有答案，你会怎样重新理解这段关系？
+- 可转入深聊手册：`D02`、`D06`、`D08`。
+- 高风险信号：一方把“暂时没准备好”误解成“永远不想要”或“不想和你一起走远”。
+
+### `M01-S04 | 一方非常想结婚，另一方还想观察`
+- 情景：一方已经把结婚当成明确目标，另一方仍想继续观察关系，不愿过早承诺。
+- 先对齐的争点：争的是节奏，还是对关系的根本判断。
+- 建议先问：你是真的还没准备好，还是现在这段关系还没有让你想确认？
+- 可转入深聊手册：`D03`、`D06`、`D09`。
+- 高风险信号：长期拖延且不给清晰解释，让另一方持续悬着。
+
+### `M01-S05 | 伴侣、工作、父母同时拉扯你`
+- 情景：你正处在工作高压期，父母也有情绪或现实需求，而伴侣感到被忽略，认为关系被一直排在后面。
+- 先对齐的争点：这到底是阶段性失衡，还是你们对优先级的理解本就不同。
+- 建议先问：在你心里，“把伴侣放在重要位置”最少要体现在哪些事情上？
+- 可转入深聊手册：`D04`、`D05`、`D08`。
+- 高风险信号：一方长期靠猜测自己在关系中的位置，另一方又默认“不需要特别说”。
+
+## 三、深聊手册
+
+### A. 当你们卡在“婚姻到底意味着什么”
+- `M01-D01` 你现在对婚姻的理解，最像谁影响了你？
+- `M01-D03` 你觉得我真正需要被怎样爱？
+- `M01-D07` 你最早关于“好婚姻”的想象从哪里来？那个想象今天还在影响你吗？
+
+### B. 当你们卡在“关系优先级和被放在心上的感觉”
+- `M01-D04` 你认为什么叫“把伴侣放在第一位”？
+- `M01-D05` 如果我们未来都很忙，你希望如何确认这段关系仍然重要？
+- `M01-D08` 如果我们的优先级排序永远不可能完全一致，你觉得什么程度还算能一起走下去？
+
+### C. 当你们卡在“承诺、底线和长期选择”
+- `M01-D02` 你最怕我以后变成什么样？
+- `M01-D06` 哪些分歧你能慢慢磨合，哪些是底线？
+- `M01-D09` 如果我们未来都发生了变化，你会怎样理解“承诺”仍然成立？
+
+### 使用提醒
+- 不要把深聊变成盘问，只选最贴近卡点的 2-3 题。
+- 如果你们已经在争论谁对，先暂停定义，回到“这题为什么对我这么重要”。
+- M01 讨论完后，很多分歧会自然连到 M04 家庭边界、M05 孩子议题或 M06 长期生活方式，不必一次讲完。
+
+## 四、结果记录页
+```yaml
+module: M01 关系目标、婚姻意义与承诺
+date:
+discussion_duration:
+emotional_climate: 轻松 | 紧张 | 回避 | 有压迫感
+status: 一致 | 可协商 | 暂无结论 | 高风险冲突
+questionnaire_summary:
+  biggest_gaps:
+  easiest_agreements:
+  high_trigger_questions:
+value_alignment_type:
+  - 更像价值观差异 / 表达方式差异 / 人生阶段差异 / 暂不确定
+priority_mapping:
+  daily_life:
+  conflict_moments:
+  long_term_future:
+agreements:
+major_differences:
+reason_behind_difference:
+  - 婚姻意义理解差异
+  - 承诺理解差异
+  - 关系优先级差异
+  - 安全感来源差异
+need_more_information:
+temporary_conclusion:
+need_rules:
+  - 如何确认关系仍然重要
+  - 高压时期如何留出伴侣优先级
+  - 哪些长期议题必须在何时复谈
+next_action:
+review_date:
+risk_radar:
+  values_alignment:
+  communication_safety:
+  decision_collaboration:
+  resource_alignment:
+  family_boundary_clarity:
+  long_term_coordination:
+```
+
+## 五、风险雷达维度映射
+- 价值观一致度：重点看 `Q01` `Q02` `Q06` `D01` `D07`
+- 沟通安全感：重点看 `Q03` `Q04` `E05` `D03` `D05`
+- 决策协商能力：重点看 `Q05` `S01` `S02` `S05` `D08`
+- 金钱与资源协同度：重点看 `Q05` `E01` `E02` `E06`
+- 家庭边界清晰度：重点看 `Q05` `S05` `D04`
+- 长期生活协同度：重点看 `Q07` `Q08` `S01` `S03` `D09`
+
+## 可扩展标签
+`values` `commitment` `autonomy` `life_plan` `security` `priority`
+
+## 引用来源
+- PREPARE/ENRICH
+- FOCCUS Pre-Marriage Inventory
+- 《婚前亲密关系问卷的初步编制及信效度检验》
+- 《婚前辅导及其有效性研究》
+- 《青年婚恋意愿调查：面对婚姻，年轻人在忧虑什么？》
+- 相关中文实务材料：婚前辅导、婚姻意义、承诺与关系优先级讨论
+
+</script>
+
+  <div class="page">
+    <section class="hero" id="top">
+      <div class="eyebrow">Interactive Module Archive</div>
+      <h1>M01 关系目标、婚姻意义与承诺</h1>
+      <p>
+        这是把原始 Markdown 模块重组后的可交互网页版本。信息完整保留，阅读上改成“总览 → 问卷 → 情景卡 → 深聊手册 → 结果记录 / 风险雷达”的单页流程，方便浏览、讨论、归档与后续继续扩展。
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#questionnaire">进入镜像问卷</a>
+        <a class="button" href="#scenario-cards">查看情景讨论卡</a>
+        <a class="button" href="#workspace">打开结果记录工作台</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong id="stat-question-count">0</strong><span>问卷题目总数（核心 + 扩展）</span></div>
+        <div class="stat"><strong id="stat-scenario-count">0</strong><span>情景讨论卡数量</span></div>
+        <div class="stat"><strong id="stat-prompt-count">0</strong><span>深聊追问数量</span></div>
+        <div class="stat"><strong id="stat-risk-count">6</strong><span>风险雷达维度</span></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="block">
+          <div class="sidebar-label">快速导航</div>
+          <nav class="toc" id="toc"></nav>
+        </div>
+        <div class="block">
+          <div class="sidebar-label">搜索内容</div>
+          <div class="search-box">
+            <input id="searchInput" type="search" placeholder="搜题号、关键词、场景、提示词…" />
+            <div class="hint">支持直接搜 M01-Q01、关键词、场景、提示词，也支持直接搜 D05、S03 这类短编号。</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="sidebar-label">内容分区筛选</div>
+          <div class="chips" id="chips"></div>
+        </div>
+        <div class="block">
+          <div class="sidebar-label">操作</div>
+          <div class="tag-cloud">
+            <button class="button" id="expandAll">全部展开</button>
+            <button class="button" id="collapseAll">全部收起</button>
+            <button class="button" id="clearFilter">清空筛选</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="panel" id="overview">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>模块总览</h2>
+                <p>先把“钱代表什么、边界在哪、谁有决定权、风险能承受到哪里”讲清楚，再建立共同规则，而不是直接争输赢。</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid two">
+              <div class="info-card">
+                <h3>模块定位</h3>
+                <p id="module定位"></p>
+              </div>
+              <div class="info-card">
+                <h3>模块目标</h3>
+                <p id="module目标"></p>
+              </div>
+            </div>
+            <div class="section-group">
+              <div class="section-card">
+                <h3>使用方式</h3>
+                <ol class="section-list" id="usageList"></ol>
+              </div>
+              <div class="section-card">
+                <h3>关键分歧地图</h3>
+                <ol class="section-list" id="conflictList"></ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel filterable-section" id="questionnaire" data-section="questionnaire">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>镜像问卷</h2>
+                <p>先各自独立填写，再挑分歧最大、最容易反复卡住的题目进入讨论。网页版把核心题和扩展题分开展示，并支持全文搜索。</p>
+              </div>
+              <div class="muted-badge" id="questionnaireCount">0 个条目</div>
+            </div>
+          </div>
+          <div class="panel-body" id="questionnaireBody"></div>
+        </section>
+
+        <section class="panel filterable-section" id="scenario-cards" data-section="scenario">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>情景讨论卡</h2>
+                <p>把抽象立场丢进现实情景，优先对齐你们真正卡住的争点，再判断是规则问题、边界问题、忠诚问题，还是安全感问题。</p>
+              </div>
+              <div class="muted-badge" id="scenarioCount">0 张卡片</div>
+            </div>
+          </div>
+          <div class="panel-body" id="scenarioBody"></div>
+        </section>
+
+        <section class="panel filterable-section" id="deep-talk" data-section="deepTalk">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>深聊手册</h2>
+                <p>卡住时不要继续互相证明，改成追问“为什么这件事对我这么重要”。每组只挑最贴近当下冲突的 2-3 个问题即可。</p>
+              </div>
+              <div class="muted-badge" id="deepTalkCount">0 个追问</div>
+            </div>
+          </div>
+          <div class="panel-body" id="deepTalkBody"></div>
+        </section>
+
+        <section class="panel filterable-section" id="workspace" data-section="workspace">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>结果记录页与风险雷达工作台</h2>
+                <p>下方记录面板和雷达评分会实时生成 YAML 内容，方便你直接复制到别处保存，同时继续保留网页内的填写与浏览体验。</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="workspace-grid">
+              <div class="workspace-card">
+                <h3>讨论记录表单</h3>
+                <p class="hint">工作台会根据原始 YAML 模板自动生成字段；你在这里填写、选择或评分后，右侧 YAML 会实时更新，方便直接复制保存。</p>
+                <div class="form-grid" id="recordForm"></div>
+              </div>
+              <div class="workspace-card">
+                <h3>风险雷达实时视图</h3>
+                <div class="radar-grid" id="radarControls"></div>
+                <canvas id="radarCanvas" width="620" height="620"></canvas>
+                <p class="hint">维度映射来自原文，滑动评分会同步写回到 YAML。</p>
+              </div>
+            </div>
+            <div class="workspace-grid" style="margin-top:18px;">
+              <div class="yaml-card">
+                <h3>实时 YAML 记录内容</h3>
+                <pre id="yamlTemplate"></pre>
+              </div>
+              <div class="workspace-card">
+                <h3>风险雷达维度映射</h3>
+                <div class="item-grid" id="riskMapping"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel filterable-section" id="references" data-section="references">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>标签、来源与原文归档</h2>
+                <p>原文中的可扩展标签、引用来源和完整 Markdown 源文都保留在这里，后续继续加模块或做二次转换时可以直接复用。</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="section-group">
+              <div class="section-card">
+                <h3>可扩展标签</h3>
+                <div class="tag-cloud" id="tagList"></div>
+              </div>
+              <div class="section-card">
+                <h3>引用来源</h3>
+                <div class="reference-list" id="referenceList"></div>
+              </div>
+            </div>
+            <div class="raw-drawer">
+              <details class="subsection">
+                <summary>
+                  <div class="subsection-head">
+                    <div class="item-title-wrap">
+                      <div class="item-title">查看完整原始 Markdown</div>
+                      <p class="hint">为了确保信息零损失，网页内保留了整份原文，可随时核对。</p>
+                    </div>
+                  </div>
+                </summary>
+                <div class="subsection-body">
+                  <div class="subsection-content">
+                    <pre id="rawMarkdown"></pre>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <div class="empty-state" id="emptyState">当前筛选下没有匹配内容，换个关键词试试。</div>
+        <p class="footer-note">归档位置：d:/marriage/web_archive/M01_关系目标-婚姻意义-承诺/index.html</p>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const source = document.getElementById("source-md").textContent.replace(/\r/g, "").trim();
+
+    function normalizeCode(code) {
+      const trimmed = String(code || "").trim().toUpperCase();
+      if (!trimmed) return "";
+      if (/^M\d{2}-[QESD]\d{2}$/.test(trimmed)) return trimmed;
+      if (/^[QESD]\d{2}$/.test(trimmed)) return `M01-${trimmed}`;
+      return trimmed;
+    }
+
+    function buildTargetId(code) {
+      const normalized = normalizeCode(code);
+      return normalized ? `ref-${normalized.toLowerCase()}` : "";
+    }
+
+    function renderInline(text) {
+      return text
+        .replace(/`([^`]+)`/g, (_, rawCode) => renderCodeReference(rawCode))
+        .replace(/“([^”]+)”/g, '“<span>$1</span>”');
+    }
+
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function parseDocument(md) {
+      const lines = md.split("\n");
+      const doc = {
+        title: "",
+        introSections: [],
+        questionnaire: [],
+        scenarios: [],
+        deepTalk: [],
+        reminders: [],
+        yaml: "",
+        riskMapping: [],
+        tags: [],
+        references: []
+      };
+
+      let currentMain = "intro";
+      let currentGroup = null;
+      let currentItem = null;
+      let inCode = false;
+      let codeBuffer = [];
+
+      const flushCurrentItem = () => {
+        if (!currentItem) return;
+        if (currentMain === "questionnaire") {
+          if (!currentGroup.items) currentGroup.items = [];
+          currentGroup.items.push(currentItem);
+        } else if (currentMain === "scenario") {
+          doc.scenarios.push(currentItem);
+        }
+        currentItem = null;
+      };
+
+      const pushDeepPrompt = (text) => {
+        const match = text.match(/^`([^`]+)`\s*(.+)$/);
+        const prompt = match ? { code: match[1], text: match[2] } : { code: "", text };
+        if (currentGroup) {
+          if (!currentGroup.prompts) currentGroup.prompts = [];
+          currentGroup.prompts.push(prompt);
+        }
+      };
+
+      for (let i = 0; i < lines.length; i += 1) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith("```") && !inCode) {
+          inCode = true;
+          codeBuffer = [];
+          continue;
+        }
+        if (trimmed.startsWith("```") && inCode) {
+          inCode = false;
+          doc.yaml = codeBuffer.join("\n");
+          continue;
+        }
+        if (inCode) {
+          codeBuffer.push(line);
+          continue;
+        }
+        if (!trimmed) continue;
+
+        if (trimmed.startsWith("# ")) {
+          doc.title = trimmed.replace(/^#\s+/, "");
+          continue;
+        }
+
+        if (trimmed.startsWith("## ")) {
+          flushCurrentItem();
+          const title = trimmed.replace(/^##\s+/, "");
+          if (title.includes("镜像问卷")) {
+            currentMain = "questionnaire";
+            currentGroup = null;
+          } else if (title.includes("情景讨论卡")) {
+            currentMain = "scenario";
+            currentGroup = null;
+          } else if (title.includes("深聊手册")) {
+            currentMain = "deepTalk";
+            currentGroup = null;
+          } else if (title.includes("结果记录页")) {
+            currentMain = "result";
+            currentGroup = null;
+          } else if (title.includes("风险雷达维度映射")) {
+            currentMain = "riskMapping";
+            currentGroup = null;
+          } else if (title.includes("可扩展标签")) {
+            currentMain = "tags";
+            currentGroup = null;
+          } else if (title.includes("引用来源")) {
+            currentMain = "references";
+            currentGroup = null;
+          } else {
+            currentMain = "intro";
+            currentGroup = { title, lines: [] };
+            doc.introSections.push(currentGroup);
+          }
+          continue;
+        }
+
+        if (trimmed.startsWith("### ")) {
+          flushCurrentItem();
+          const title = trimmed.replace(/^###\s+/, "");
+          if (currentMain === "questionnaire") {
+            currentGroup = { title, items: [] };
+            doc.questionnaire.push(currentGroup);
+          } else if (currentMain === "scenario") {
+            const match = title.match(/^`([^`]+)\s*\|\s*([^`]+)`$/);
+            currentItem = {
+              rawTitle: title,
+              code: match ? match[1].trim() : "",
+              title: match ? match[2].trim() : title,
+              lines: []
+            };
+          } else if (currentMain === "deepTalk") {
+            currentGroup = { title, prompts: [] };
+            doc.deepTalk.push(currentGroup);
+          } else {
+            currentGroup = { title, lines: [] };
+          }
+          continue;
+        }
+
+        if (trimmed.startsWith("#### ")) {
+          flushCurrentItem();
+          const raw = trimmed.replace(/^####\s+/, "");
+          const match = raw.match(/^`([^`]+)\s*\|\s*([^`]+)`$/);
+          currentItem = {
+            rawTitle: raw,
+            code: match ? match[1].trim() : "",
+            title: match ? match[2].trim() : raw,
+            lines: []
+          };
+          continue;
+        }
+
+        if (currentMain === "intro" && currentGroup) {
+          currentGroup.lines.push(trimmed.replace(/^\d+\.\s+/, ""));
+          continue;
+        }
+
+        if (currentMain === "questionnaire" && currentItem) {
+          currentItem.lines.push(trimmed.replace(/^-\s+/, ""));
+          continue;
+        }
+
+        if (currentMain === "scenario") {
+          if (!currentItem && trimmed.startsWith("### ")) continue;
+          if (!currentItem && trimmed.startsWith("- ")) continue;
+          if (!currentItem && trimmed.startsWith("`")) continue;
+          if (!currentItem && currentGroup && currentGroup.title) continue;
+          if (!currentItem) {
+            const raw = trimmed.replace(/^###\s+/, "");
+            const match = raw.match(/^`([^`]+)\s*\|\s*([^`]+)`$/);
+            currentItem = {
+              rawTitle: raw,
+              code: match ? match[1].trim() : "",
+              title: match ? match[2].trim() : raw,
+              lines: []
+            };
+          } else {
+            currentItem.lines.push(trimmed.replace(/^-\s+/, ""));
+          }
+          continue;
+        }
+
+        if (currentMain === "deepTalk") {
+          if (trimmed.startsWith("- `")) {
+            pushDeepPrompt(trimmed.replace(/^-\s+/, ""));
+          } else if (trimmed.startsWith("- ")) {
+            doc.reminders.push(trimmed.replace(/^-\s+/, ""));
+          }
+          continue;
+        }
+
+        if (currentMain === "riskMapping" && trimmed.startsWith("- ")) {
+          const [label, rest] = trimmed.replace(/^-\s+/, "").split("：");
+          doc.riskMapping.push({ label, text: rest || "" });
+          continue;
+        }
+
+        if (currentMain === "tags") {
+          doc.tags = trimmed.match(/`([^`]+)`/g)?.map((t) => t.replace(/`/g, "")) || [];
+          continue;
+        }
+
+        if (currentMain === "references" && trimmed.startsWith("- ")) {
+          doc.references.push(trimmed.replace(/^-\s+/, ""));
+        }
+      }
+
+      flushCurrentItem();
+      return doc;
+    }
+
+    const doc = parseDocument(source);
+    doc.deepTalk = doc.deepTalk.filter((group) => (group.prompts || []).length > 0);
+
+    const codeRegistry = new Map();
+
+    function registerCode(code) {
+      const normalized = normalizeCode(code);
+      if (!normalized) return;
+      codeRegistry.set(normalized, buildTargetId(normalized));
+      const shortCode = normalized.replace(/^M\d{2}-/, "");
+      if (shortCode && !codeRegistry.has(shortCode)) {
+        codeRegistry.set(shortCode, buildTargetId(normalized));
+      }
+    }
+
+    function renderCodeReference(code) {
+      const raw = String(code || "").trim();
+      const normalized = normalizeCode(raw);
+      const targetId = codeRegistry.get(normalized) || codeRegistry.get(raw.toUpperCase());
+      const label = escapeHtml(raw);
+      if (!targetId) {
+        return `<code class="inline">${label}</code>`;
+      }
+      return `<a class="code-jump" href="#${targetId}" data-target="${targetId}"><code class="inline">${label}</code></a>`;
+    }
+
+    doc.questionnaire.forEach((group) => (group.items || []).forEach((item) => registerCode(item.code)));
+    doc.scenarios.forEach((item) => registerCode(item.code));
+    doc.deepTalk.forEach((group) => (group.prompts || []).forEach((prompt) => registerCode(prompt.code)));
+
+    const introMap = Object.fromEntries(doc.introSections.map((section) => [section.title, section.lines]));
+
+    document.getElementById("module定位").innerHTML = renderInline((introMap["模块定位"] || []).join(" "));
+    document.getElementById("module目标").innerHTML = renderInline((introMap["模块目标"] || []).join(" "));
+
+    function fillList(elementId, items) {
+      const el = document.getElementById(elementId);
+      el.innerHTML = "";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = renderInline(item);
+        el.appendChild(li);
+      });
+    }
+
+    fillList("usageList", introMap["使用方式"] || []);
+    fillList("conflictList", introMap["关键分歧地图"] || []);
+
+    function linesToHtml(lines) {
+      return lines
+        .map((line) => {
+          const parts = line.split(/：(.+)/);
+          if (parts.length > 1) {
+            return `<p class="key-line"><strong>${escapeHtml(parts[0])}：</strong>${renderInline(escapeHtml(parts[1]))}</p>`;
+          }
+          return `<p>${renderInline(escapeHtml(line))}</p>`;
+        })
+        .join("");
+    }
+
+    function createItemCard(item, sectionName, openByDefault = false) {
+      const details = document.createElement("details");
+      details.className = "item searchable";
+      if (openByDefault) details.open = true;
+      details.dataset.section = sectionName;
+      details.dataset.search = `${item.code} ${item.title} ${item.lines.join(" ")}`.toLowerCase();
+      if (item.code) details.id = buildTargetId(item.code);
+      details.innerHTML = `
+        <summary>
+          <div class="item-head">
+            <span class="item-code">${escapeHtml(item.code || sectionName)}</span>
+            <div class="item-title-wrap">
+              <div class="item-title">${renderInline(escapeHtml(item.title))}</div>
+            </div>
+          </div>
+        </summary>
+        <div class="item-body">
+          <div class="item-content">${linesToHtml(item.lines)}</div>
+        </div>
+      `;
+      return details;
+    }
+
+
+    function createGroup(group, sectionName, target, openItems = false) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "section-group group searchable-group";
+      wrapper.dataset.section = sectionName;
+      wrapper.dataset.search = `${group.title} ${(group.items || []).map((item) => `${item.code} ${item.title} ${item.lines.join(" ")}`).join(" ")}`.toLowerCase();
+      const head = document.createElement("div");
+      head.className = "group-head";
+      head.innerHTML = `<h3>${renderInline(escapeHtml(group.title))}</h3><span class="muted-badge">${(group.items || []).length} 个条目</span>`;
+      const accordion = document.createElement("div");
+      accordion.className = "accordion";
+      (group.items || []).forEach((item, index) => accordion.appendChild(createItemCard(item, sectionName, openItems && index === 0)));
+      wrapper.appendChild(head);
+      wrapper.appendChild(accordion);
+      target.appendChild(wrapper);
+    }
+
+    const questionnaireBody = document.getElementById("questionnaireBody");
+    doc.questionnaire.forEach((group, index) => createGroup(group, "questionnaire", questionnaireBody, index === 0));
+
+    const scenarioBody = document.getElementById("scenarioBody");
+    const scenarioGroup = document.createElement("div");
+    scenarioGroup.className = "accordion";
+    doc.scenarios.forEach((item, index) => scenarioGroup.appendChild(createItemCard(item, "scenario", index < 2)));
+    scenarioBody.appendChild(scenarioGroup);
+
+    const deepTalkBody = document.getElementById("deepTalkBody");
+    doc.deepTalk.forEach((group, idx) => {
+      const details = document.createElement("details");
+      details.className = "subsection searchable searchable-group";
+      details.open = idx === 0;
+      details.dataset.section = "deepTalk";
+      details.dataset.search = `${group.title} ${group.prompts.map((prompt) => `${prompt.code} ${prompt.text}`).join(" ")}`.toLowerCase();
+      const promptsHtml = group.prompts
+        .map((prompt) => `
+          <div class="subsection-card searchable" ${prompt.code ? `id="${buildTargetId(prompt.code)}"` : ""} data-section="deepTalk" data-search="${escapeHtml(`${prompt.code} ${prompt.text}`.toLowerCase())}">
+            <h3>${prompt.code ? `<span class="item-code" style="margin-right:10px;">${escapeHtml(prompt.code)}</span>` : ""}${renderInline(escapeHtml(prompt.text))}</h3>
+          </div>
+        `)
+        .join("");
+
+      details.innerHTML = `
+        <summary>
+          <div class="subsection-head">
+            <div class="item-title-wrap">
+              <div class="item-title">${renderInline(escapeHtml(group.title))}</div>
+            </div>
+            <span class="muted-badge">${group.prompts.length} 个追问</span>
+          </div>
+        </summary>
+        <div class="subsection-body">
+          <div class="subsection-content">${promptsHtml}</div>
+        </div>
+      `;
+      deepTalkBody.appendChild(details);
+    });
+
+    if (doc.reminders.length) {
+      const reminderCard = document.createElement("div");
+      reminderCard.className = "section-card";
+      reminderCard.innerHTML = `<h3>使用提醒</h3><ul class="section-list">${doc.reminders.map((line) => `<li>${renderInline(escapeHtml(line))}</li>`).join("")}</ul>`;
+      deepTalkBody.appendChild(reminderCard);
+    }
+
+    document.getElementById("rawMarkdown").textContent = source;
+
+    const riskMapping = document.getElementById("riskMapping");
+    doc.riskMapping.forEach((entry) => {
+      const card = document.createElement("div");
+      card.className = "subsection-card searchable";
+      card.dataset.section = "workspace";
+      card.dataset.search = `${entry.label} ${entry.text}`.toLowerCase();
+      card.innerHTML = `<h3>${escapeHtml(entry.label)}</h3><p>${renderInline(escapeHtml(entry.text))}</p>`;
+      riskMapping.appendChild(card);
+    });
+    const yamlTemplateEl = document.getElementById("yamlTemplate");
+    const recordForm = document.getElementById("recordForm");
+
+    const labelMap = {
+      module: "模块",
+      date: "日期",
+      discussion_duration: "讨论时长",
+      emotional_climate: "情绪氛围",
+      status: "当前状态",
+      questionnaire_summary: "问卷摘要",
+      biggest_gaps: "分歧最大的问题",
+      easiest_agreements: "最容易达成一致的点",
+      high_trigger_questions: "高触发问题",
+      agreements: "已形成的共识",
+      major_differences: "重大差异",
+      reason_behind_difference: "差异背后的原因",
+      need_more_information: "还需要补充的信息",
+      temporary_conclusion: "临时结论",
+      next_action: "下一步动作",
+      review_date: "复盘日期",
+      need_rules: "待建立规则",
+      relationship_protection_rules: "关系保护规则",
+      scenario_cards_used: "已使用情景卡",
+      deep_prompts_used: "已使用深聊提示",
+      risk_radar: "风险雷达",
+      values_alignment: "价值观一致度",
+      communication_safety: "沟通安全感",
+      decision_collaboration: "决策协商能力",
+      resource_alignment: "资源协同度",
+      family_boundary_clarity: "家庭边界清晰度",
+      long_term_coordination: "长期生活协同度",
+      value_alignment_type: "价值观差异类型",
+      priority_mapping: "优先级映射",
+      daily_life: "日常生活",
+      conflict_moments: "冲突时刻",
+      long_term_future: "长期未来",
+      conflict_pattern: "冲突模式",
+      my_style: "我的风格",
+      your_style: "对方风格",
+      overlap_or_mismatch: "重叠 / 错位",
+      emotional_needs: "情绪需求",
+      my_need: "我的需求",
+      your_need: "对方需求",
+      repair_mechanism: "修复机制",
+      currently_effective: "当前有效",
+      still_missing: "仍然缺失",
+      vulnerability_safety: "脆弱表达安全感",
+      what_makes_it_safe: "哪些让它安全",
+      what_shuts_it_down: "哪些会让它关闭",
+      parental_triggers: "家庭触发点",
+      my_family: "我家",
+      your_family: "对方家",
+      external_communication_owner: "对外沟通责任",
+      unresolved_customs: "未解决的习俗 / 议题",
+      current_position: "当前立场",
+      fertility_decision: "生育决定",
+      revisit_condition: "复谈条件",
+      prenup_asset_focus: "婚前财产 / 债务关注点",
+      disclosed_assets_or_debts: "已披露资产 / 债务",
+      unresolved_major_assets: "尚未解决的大额资产议题",
+      formal_agreement_needed: "是否需要正式约定"
+    };
+
+    const radarLabelMap = {
+      values_alignment: "价值观一致度",
+      communication_safety: "沟通安全感",
+      decision_collaboration: "决策协商能力",
+      resource_alignment: "金钱与资源协同度",
+      family_boundary_clarity: "家庭边界清晰度",
+      long_term_coordination: "长期生活协同度"
+    };
+
+    function prettyKey(key) {
+      return labelMap[key] || key.replace(/_/g, " ");
+    }
+
+    function pathKey(path) {
+      return path.join(".");
+    }
+
+    function finalizeSchemaNode(node) {
+      if (node.type === "pending") {
+        if (node.items && node.items.length) {
+          node.type = "list";
+        } else if (node.children && node.children.length) {
+          node.type = "object";
+        } else {
+          node.type = "scalar";
+          node.value = "";
+        }
+      }
+      (node.children || []).forEach(finalizeSchemaNode);
+      return node;
+    }
+
+    function parseYamlSchema(yamlText) {
+      const root = { key: "__root__", type: "object", path: [], children: [], items: [] };
+      const stack = [{ indent: -1, node: root }];
+      const lines = yamlText.split("\n");
+
+      lines.forEach((rawLine) => {
+        const line = rawLine.replace(/\t/g, "  " );
+        const trimmed = line.trim();
+        if (!trimmed) return;
+        const indent = (line.match(/^ */) || [""])[0].length;
+
+        while (stack.length > 1 && indent <= stack[stack.length - 1].indent) {
+          finalizeSchemaNode(stack.pop().node);
+        }
+
+        const parent = stack[stack.length - 1].node;
+        if (trimmed.startsWith("- ") ) {
+          if (parent.type === "pending") parent.type = "list";
+          if (!parent.items) parent.items = [];
+          parent.items.push(trimmed.replace(/^-\s+/, ""));
+          return;
+        }
+
+        const match = trimmed.match(/^([^:]+):(.*)$/);
+        if (!match) return;
+        if (parent.type === "pending") parent.type = "object";
+        const key = match[1].trim();
+        const value = match[2].trim();
+        const node = {
+          key,
+          path: [...(parent.path || []), key],
+          type: value ? "scalar" : "pending",
+          value,
+          options: value && value.includes(" | ") ? value.split("|").map((item) => item.trim()).filter(Boolean) : null,
+          children: [],
+          items: []
+        };
+        if (!parent.children) parent.children = [];
+        parent.children.push(node);
+        if (node.type === "pending") {
+          stack.push({ indent, node });
+        }
+      });
+
+      while (stack.length > 1) {
+        finalizeSchemaNode(stack.pop().node);
+      }
+      return finalizeSchemaNode(root);
+    }
+
+    const yamlSchema = parseYamlSchema(doc.yaml);
+    const formState = {};
+
+    function collectDefaults(node) {
+      if (node.key !== "__root__") {
+        const key = pathKey(node.path);
+        if (node.type === "list") {
+          formState[key] = (node.items || []).join("\n");
+        } else if (node.type === "scalar") {
+          formState[key] = node.value || "";
+        }
+      }
+      (node.children || []).forEach(collectDefaults);
+    }
+
+    collectDefaults(yamlSchema);
+    const dateFieldKey = Object.keys(formState).find((key) => key === "date");
+    if (dateFieldKey && !formState[dateFieldKey]) {
+      formState[dateFieldKey] = new Date().toLocaleDateString("en-CA");
+    }
+
+    function splitList(value, allowDelimiters = false) {
+      const trimmed = String(value || "").trim();
+      if (!trimmed) return [];
+      const base = trimmed.includes("\n") ? trimmed.split(/\n+/) : [trimmed];
+      const items = allowDelimiters && base.length === 1 ? base[0].split(/[，,、；;]+/) : base;
+      return items.map((item) => item.trim()).filter(Boolean);
+    }
+
+    function yamlQuote(value) {
+      return `"${String(value).replace(/\\/g, "\\\\").replace(/"/g, '\"')}"`;
+    }
+
+    function renderYamlNode(node, indent = 0) {
+      const pad = "  ".repeat(indent);
+      if (node.key === "__root__") {
+        return (node.children || []).map((child) => renderYamlNode(child, 0)).join("\n");
+      }
+
+      const stateValue = formState[pathKey(node.path)] ?? "";
+      if (node.type === "object") {
+        const renderedChildren = (node.children || []).map((child) => renderYamlNode(child, indent + 1)).join("\n");
+        return renderedChildren ? `${pad}${node.key}:\n${renderedChildren}` : `${pad}${node.key}:`;
+      }
+
+      if (node.type === "list") {
+        const items = splitList(stateValue, true);
+        if (!items.length) return `${pad}${node.key}:`;
+        return `${pad}${node.key}:\n${items.map((item) => `${pad}  - ${yamlQuote(item)}`).join("\n")}`;
+      }
+
+      if (!stateValue) return `${pad}${node.key}:`;
+      if (node.path[0] === "risk_radar") return `${pad}${node.key}: ${stateValue}`;
+      if (String(stateValue).includes("\n")) {
+        return `${pad}${node.key}: |-\n${String(stateValue)
+          .split("\n")
+          .map((line) => `${pad}  ${line}`)
+          .join("\n")}`;
+      }
+      return `${pad}${node.key}: ${yamlQuote(stateValue)}`;
+    }
+
+    function updateYamlTemplate() {
+      yamlTemplateEl.textContent = renderYamlNode(yamlSchema);
+    }
+
+    function isDateField(node) {
+      return node.key === "date" || node.key.endsWith("_date");
+    }
+
+    function isShortTextField(node) {
+      return ["discussion_duration", "module"].includes(node.key);
+    }
+
+    function shouldUseTextarea(node) {
+      if (node.type === "list") return true;
+      if (node.options && node.options.length) return false;
+      if (isDateField(node) || isShortTextField(node)) return false;
+      return true;
+    }
+
+    function bindControl(control, node, formatter = (value) => value) {
+      const key = pathKey(node.path);
+      control.value = formatter(formState[key] || "");
+      const handler = () => {
+        formState[key] = control.value;
+        updateYamlTemplate();
+      };
+      control.addEventListener("input", handler);
+      control.addEventListener("change", handler);
+    }
+
+    function createScalarField(node) {
+      const field = document.createElement("div");
+      field.className = shouldUseTextarea(node) ? "field wide" : "field";
+      const label = document.createElement("label");
+      label.textContent = prettyKey(node.key);
+      field.appendChild(label);
+
+      if (node.options && node.options.length) {
+        const select = document.createElement("select");
+        const emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.textContent = "未填写";
+        select.appendChild(emptyOption);
+        node.options.forEach((option) => {
+          const optionEl = document.createElement("option");
+          optionEl.value = option;
+          optionEl.textContent = option;
+          select.appendChild(optionEl);
+        });
+        bindControl(select, node);
+        field.appendChild(select);
+        return field;
+      }
+
+      if (isDateField(node)) {
+        const input = document.createElement("input");
+        input.type = "date";
+        bindControl(input, node);
+        field.appendChild(input);
+        return field;
+      }
+
+      if (shouldUseTextarea(node)) {
+        const textarea = document.createElement("textarea");
+        bindControl(textarea, node);
+        field.appendChild(textarea);
+        return field;
+      }
+
+      const input = document.createElement("input");
+      input.type = "text";
+      bindControl(input, node);
+      if (node.key === "module") input.readOnly = true;
+      field.appendChild(input);
+      return field;
+    }
+
+    function createListField(node) {
+      const field = document.createElement("div");
+      field.className = "field wide";
+      const label = document.createElement("label");
+      label.textContent = prettyKey(node.key);
+      const textarea = document.createElement("textarea");
+      bindControl(textarea, node);
+      field.appendChild(label);
+      field.appendChild(textarea);
+      return field;
+    }
+
+    function createObjectField(node, depth = 0) {
+      const field = document.createElement("div");
+      field.className = "field wide";
+      const card = document.createElement("div");
+      card.className = depth === 0 ? "section-card" : "subsection-card";
+      const heading = document.createElement("h3");
+      heading.textContent = prettyKey(node.key);
+      card.appendChild(heading);
+      const inner = document.createElement("div");
+      inner.className = "form-grid";
+      (node.children || []).forEach((child) => {
+        inner.appendChild(createFormNode(child, depth + 1));
+      });
+      card.appendChild(inner);
+      field.appendChild(card);
+      return field;
+    }
+
+    function createFormNode(node, depth = 0) {
+      if (node.type === "object") return createObjectField(node, depth);
+      if (node.type === "list") return createListField(node);
+      return createScalarField(node);
+    }
+
+    (yamlSchema.children || [])
+      .filter((node) => node.key !== "risk_radar")
+      .forEach((node) => recordForm.appendChild(createFormNode(node)));
+
+    const radarSchema = (yamlSchema.children || []).find((node) => node.key === "risk_radar");
+    const radarAxes = (radarSchema?.children || []).map((node) => {
+      const key = pathKey(node.path);
+      const currentValue = Number(formState[key]) || 3;
+      formState[key] = String(currentValue);
+      return {
+        key: node.key,
+        label: radarLabelMap[node.key] || prettyKey(node.key),
+        path: node.path,
+        value: currentValue
+      };
+    });
+
+
+    const tagList = document.getElementById("tagList");
+
+    doc.tags.forEach((tag) => {
+      const tagEl = document.createElement("span");
+      tagEl.className = "chip searchable";
+      tagEl.dataset.section = "references";
+      tagEl.dataset.search = tag.toLowerCase();
+      tagEl.textContent = tag;
+      tagList.appendChild(tagEl);
+    });
+
+    const referenceList = document.getElementById("referenceList");
+    doc.references.forEach((ref, index) => {
+      const card = document.createElement("div");
+      card.className = "reference-card searchable";
+      card.dataset.section = "references";
+      card.dataset.search = ref.toLowerCase();
+      card.innerHTML = `<div class="reference-index">${index + 1}</div><p>${renderInline(escapeHtml(ref))}</p>`;
+      referenceList.appendChild(card);
+    });
+
+    const questionTotal = doc.questionnaire.reduce((sum, group) => sum + group.items.length, 0);
+    const deepPromptTotal = doc.deepTalk.reduce((sum, group) => sum + group.prompts.length, 0);
+    document.getElementById("stat-question-count").textContent = String(questionTotal);
+    document.getElementById("stat-scenario-count").textContent = String(doc.scenarios.length);
+    document.getElementById("stat-prompt-count").textContent = String(deepPromptTotal);
+    document.getElementById("questionnaireCount").textContent = `${questionTotal} 个条目`;
+    document.getElementById("scenarioCount").textContent = `${doc.scenarios.length} 张卡片`;
+    document.getElementById("deepTalkCount").textContent = `${deepPromptTotal} 个追问`;
+
+    const tocItems = [
+      ["overview", "模块总览"],
+      ["questionnaire", "镜像问卷"],
+      ["scenario-cards", "情景讨论卡"],
+      ["deep-talk", "深聊手册"],
+      ["workspace", "结果记录与风险雷达"],
+      ["references", "标签、来源与原文归档"]
+    ];
+
+    const toc = document.getElementById("toc");
+    tocItems.forEach(([id, label]) => {
+      const link = document.createElement("a");
+      link.href = `#${id}`;
+      link.textContent = label;
+      toc.appendChild(link);
+    });
+
+    const chipConfig = [
+      ["all", "全部"],
+      ["questionnaire", "镜像问卷"],
+      ["scenario", "情景卡"],
+      ["deepTalk", "深聊手册"],
+      ["workspace", "结果记录"],
+      ["references", "标签/来源"]
+    ];
+
+    const chipsEl = document.getElementById("chips");
+    let activeSection = "all";
+    chipConfig.forEach(([key, label], index) => {
+      const chip = document.createElement("button");
+      chip.className = `chip ${index === 0 ? "active" : ""}`;
+      chip.type = "button";
+      chip.dataset.filter = key;
+      chip.textContent = label;
+      chip.addEventListener("click", () => {
+        activeSection = key;
+        [...chipsEl.querySelectorAll(".chip")].forEach((item) => item.classList.toggle("active", item.dataset.filter === key));
+        applyFilters();
+      });
+      chipsEl.appendChild(chip);
+    });
+
+    const radarControls = document.getElementById("radarControls");
+    radarAxes.forEach((axis) => {
+      const row = document.createElement("div");
+      row.className = "slider-row";
+      row.innerHTML = `
+        <span>${axis.label}</span>
+        <input type="range" min="1" max="5" value="${axis.value}" data-key="${axis.key}" />
+        <output>${axis.value}</output>
+      `;
+      const input = row.querySelector("input");
+      const output = row.querySelector("output");
+      input.addEventListener("input", () => {
+        axis.value = Number(input.value);
+        output.value = input.value;
+        drawRadar();
+        updateYamlTemplate();
+      });
+      radarControls.appendChild(row);
+    });
+
+    const canvas = document.getElementById("radarCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawRadar() {
+      const w = canvas.width;
+      const h = canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = Math.min(w, h) * 0.34;
+      ctx.clearRect(0, 0, w, h);
+
+      for (let level = 1; level <= 5; level += 1) {
+        ctx.beginPath();
+        radarAxes.forEach((axis, index) => {
+          const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+          const r = radius * (level / 5);
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
+          if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.strokeStyle = level === 5 ? "rgba(148,163,184,0.28)" : "rgba(148,163,184,0.12)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      radarAxes.forEach((axis, index) => {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = "rgba(148,163,184,0.16)";
+        ctx.stroke();
+
+        const labelX = cx + Math.cos(angle) * (radius + 34);
+        const labelY = cy + Math.sin(angle) * (radius + 34);
+        ctx.fillStyle = "#dce7f8";
+        ctx.font = "14px Segoe UI, Microsoft YaHei, sans-serif";
+        ctx.textAlign = labelX < cx - 10 ? "right" : labelX > cx + 10 ? "left" : "center";
+        ctx.textBaseline = labelY < cy ? "bottom" : "top";
+        ctx.fillText(axis.label, labelX, labelY);
+      });
+
+      ctx.beginPath();
+      radarAxes.forEach((axis, index) => {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+        const r = radius * (axis.value / 5);
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      const gradient = ctx.createLinearGradient(cx - radius, cy - radius, cx + radius, cy + radius);
+      gradient.addColorStop(0, "rgba(125,211,252,0.42)");
+      gradient.addColorStop(1, "rgba(167,139,250,0.28)");
+      ctx.fillStyle = gradient;
+      ctx.strokeStyle = "rgba(125,211,252,0.95)";
+      ctx.lineWidth = 2;
+      ctx.fill();
+      ctx.stroke();
+
+      radarAxes.forEach((axis, index) => {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+        const r = radius * (axis.value / 5);
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = "#7dd3fc";
+        ctx.fill();
+        ctx.strokeStyle = "rgba(3,7,18,0.9)";
+        ctx.stroke();
+      });
+    }
+
+    drawRadar();
+    updateYamlTemplate();
+
+    const searchInput = document.getElementById("searchInput");
+    const emptyState = document.getElementById("emptyState");
+
+    function applyFilters() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+      document.querySelectorAll(".filterable-section").forEach((section) => {
+        const sectionKey = section.dataset.section;
+        const allowed = activeSection === "all" || activeSection === sectionKey;
+        section.classList.toggle("hide", !allowed);
+      });
+
+      document.querySelectorAll(".searchable, .searchable-group").forEach((el) => {
+        const sectionAllowed = activeSection === "all" || el.dataset.section === activeSection || !el.dataset.section;
+        const matched = !keyword || (el.dataset.search || "").includes(keyword);
+        const shouldShow = sectionAllowed && matched;
+        if (el.closest(".filterable-section")?.classList.contains("hide")) return;
+        el.classList.toggle("hide", !shouldShow);
+        if (shouldShow) visibleCount += 1;
+      });
+
+      document.querySelectorAll(".searchable-group").forEach((group) => {
+        if (group.classList.contains("hide")) return;
+        const childCards = [...group.querySelectorAll(".searchable:not(.searchable-group)")].filter((el) => !el.classList.contains("hide"));
+        if (childCards.length === 0 && keyword) {
+          group.classList.add("hide");
+        }
+      });
+
+      const anyVisible = [...document.querySelectorAll(".filterable-section")].some((section) => !section.classList.contains("hide"));
+      emptyState.style.display = visibleCount === 0 && anyVisible ? "block" : "none";
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    document.getElementById("clearFilter").addEventListener("click", () => {
+      searchInput.value = "";
+      activeSection = "all";
+      [...chipsEl.querySelectorAll(".chip")].forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+      applyFilters();
+    });
+
+    function revealTarget(targetId) {
+      if (!targetId) return;
+      searchInput.value = "";
+      activeSection = "all";
+      [...chipsEl.querySelectorAll(".chip")].forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+      applyFilters();
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      let current = target;
+      while (current) {
+        if (current.tagName === "DETAILS") current.open = true;
+        current = current.parentElement;
+      }
+      target.classList.remove("jump-flash");
+      void target.offsetWidth;
+      target.classList.add("jump-flash");
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => target.classList.remove("jump-flash"), 1600);
+    }
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a.code-jump");
+      if (!link) return;
+      event.preventDefault();
+      revealTarget(link.dataset.target);
+      history.replaceState(null, "", `#${link.dataset.target}`);
+    });
+
+    if (window.location.hash.startsWith("#ref-")) {
+      window.setTimeout(() => revealTarget(window.location.hash.slice(1)), 120);
+    }
+
+    document.getElementById("expandAll").addEventListener("click", () => {
+
+      document.querySelectorAll("details.item, details.subsection").forEach((item) => { item.open = true; });
+    });
+
+    document.getElementById("collapseAll").addEventListener("click", () => {
+      document.querySelectorAll("details.item, details.subsection").forEach((item) => { item.open = false; });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const link = [...toc.querySelectorAll("a")].find((item) => item.getAttribute("href") === `#${id}`);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          toc.querySelectorAll("a").forEach((item) => item.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-40% 0px -45% 0px", threshold: 0.01 });
+
+    tocItems.forEach(([id]) => {
+      const target = document.getElementById(id);
+      if (target) observer.observe(target);
+    });
+
+    applyFilters();
+  </script>
+</body>
+</html>

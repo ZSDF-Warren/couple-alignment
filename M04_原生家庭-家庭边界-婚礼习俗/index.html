@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M04 原生家庭、家庭边界与婚礼习俗</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-elev: rgba(17, 24, 39, 0.82);
+      --bg-soft: rgba(30, 41, 59, 0.64);
+      --card: rgba(15, 23, 42, 0.78);
+      --card-strong: rgba(15, 23, 42, 0.94);
+      --line: rgba(148, 163, 184, 0.16);
+      --line-strong: rgba(148, 163, 184, 0.3);
+      --text: #e5eef8;
+      --muted: #93a4bf;
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --accent-3: #34d399;
+      --danger: #fda4af;
+      --warning: #fbbf24;
+      --shadow: 0 24px 64px rgba(2, 6, 23, 0.55);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 12px;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 26%),
+        radial-gradient(circle at bottom center, rgba(52, 211, 153, 0.10), transparent 28%),
+        linear-gradient(180deg, #060a16 0%, #0b1020 42%, #0e1528 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(125, 211, 252, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,0.7), transparent 86%);
+      opacity: 0.4;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1440px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(8, 15, 31, 0.92), rgba(18, 27, 51, 0.85));
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -18% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(125, 211, 252, 0.18), transparent 60%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      border-radius: 999px;
+      background: rgba(10, 17, 33, 0.72);
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 16px rgba(125, 211, 252, 0.65);
+    }
+
+    .hero h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(125, 211, 252, 0.32);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.16), rgba(167, 139, 250, 0.18));
+      border-color: rgba(125, 211, 252, 0.35);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 22px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(8, 14, 28, 0.82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .sidebar h2,
+    .main h2,
+    .main h3,
+    .main h4 {
+      margin: 0;
+    }
+
+    .sidebar .block + .block {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .sidebar-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .toc {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: #dbe5f5;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      line-height: 1.45;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .toc a:hover,
+    .toc a.active {
+      border-color: rgba(125, 211, 252, 0.26);
+      background: rgba(125, 211, 252, 0.08);
+      transform: translateX(2px);
+    }
+
+    .search-box {
+      display: grid;
+      gap: 10px;
+    }
+
+    .search-box input,
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(3, 7, 18, 0.72);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .search-box input:focus,
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(125, 211, 252, 0.42);
+      box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.1);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .tag-cloud,
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      color: #d7e5f7;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .chip:hover,
+    .chip.active {
+      border-color: rgba(125, 211, 252, 0.35);
+      background: rgba(125, 211, 252, 0.1);
+    }
+
+    .main {
+      display: grid;
+      gap: 22px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(9, 15, 29, 0.82);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .panel-header {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(125, 211, 252, 0.05), rgba(0,0,0,0));
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-title h2 {
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel-title p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .panel-body {
+      padding: 24px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .grid.two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-card,
+    .section-card,
+    .subsection-card,
+    .reference-card,
+    .yaml-card,
+    .workspace-card {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .info-card h3,
+    .section-card h3,
+    .subsection-card h3,
+    .workspace-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .info-card p,
+    .section-card p,
+    .subsection-card p,
+    .workspace-card p,
+    .reference-card p,
+    .subsection-card li,
+    .item-content li,
+    .section-list li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .section-list,
+    .inline-list {
+      display: grid;
+      gap: 10px;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .item-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-group {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .section-group:first-child {
+      margin-top: 0;
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .group-head h3 {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .muted-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+    }
+
+    .accordion {
+      display: grid;
+      gap: 14px;
+    }
+
+    details.item,
+    details.subsection {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+      transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+
+    details.item:hover,
+    details.subsection:hover {
+      border-color: rgba(125, 211, 252, 0.26);
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    details.item[open],
+    details.subsection[open] {
+      border-color: rgba(125, 211, 252, 0.32);
+      background: rgba(10, 17, 34, 0.95);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .item-head,
+    .subsection-head {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .item-code {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, 0.24);
+      color: var(--accent);
+      background: rgba(125, 211, 252, 0.08);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .item-title-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-title {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .item-body,
+    .subsection-body {
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .item-content,
+    .subsection-content {
+      display: grid;
+      gap: 10px;
+      padding-top: 16px;
+    }
+
+    .item-content p,
+    .subsection-content p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .key-line {
+      padding-left: 14px;
+      border-left: 3px solid rgba(125, 211, 252, 0.28);
+    }
+
+    code.inline {
+      font-family: var(--mono);
+      font-size: 0.92em;
+      padding: 2px 8px;
+      border-radius: 8px;
+      color: #d9f4ff;
+      background: rgba(125, 211, 252, 0.1);
+      border: 1px solid rgba(125, 211, 252, 0.14);
+    }
+
+    a.code-jump {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      transition: transform 0.16s ease, filter 0.16s ease;
+    }
+
+    a.code-jump:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+
+    .jump-flash {
+      animation: jumpFlash 1.5s ease;
+      box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.45), 0 0 26px rgba(125, 211, 252, 0.16);
+    }
+
+    @keyframes jumpFlash {
+      0% { box-shadow: 0 0 0 0 rgba(125, 211, 252, 0.65), 0 0 28px rgba(125, 211, 252, 0.35); }
+      100% { box-shadow: 0 0 0 0 rgba(125, 211, 252, 0), 0 0 0 rgba(125, 211, 252, 0); }
+    }
+
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(1, 5, 15, 0.9);
+      color: #dce9fb;
+      overflow: auto;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.wide {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 13px;
+      color: #d8e4f8;
+      letter-spacing: 0.02em;
+    }
+
+    .field textarea {
+      min-height: 106px;
+      resize: vertical;
+    }
+
+    .radar-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr) 38px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slider-row span,
+    .slider-row output {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .slider-row input[type="range"] {
+      width: 100%;
+      accent-color: #7dd3fc;
+    }
+
+    canvas {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      background: radial-gradient(circle at center, rgba(125, 211, 252, 0.08), rgba(3,7,18,0.2) 60%, rgba(3,7,18,0.8));
+      border: 1px solid var(--line);
+      padding: 10px;
+    }
+
+    .reference-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .reference-card {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .reference-index {
+      min-width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(125, 211, 252, 0.12);
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .raw-drawer {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .empty-state {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px dashed rgba(148, 163, 184, 0.3);
+      color: var(--muted);
+      text-align: center;
+      display: none;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    @media (max-width: 1120px) {
+      .layout,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .stats,
+      .grid.two,
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100vw - 24px, 1440px);
+        padding-top: 14px;
+      }
+
+      .hero,
+      .panel-header,
+      .panel-body,
+      .sidebar {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .stats,
+      .grid.two,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slider-row {
+        grid-template-columns: 1fr;
+      }
+
+      .item-head,
+      .subsection-head,
+      .panel-title {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script id="source-md" type="text/plain"># M04 原生家庭、家庭边界与婚礼习俗（架构重构版）
+
+## 模块定位
+这个模块不是为了判断“谁更孝顺”或“谁家更难相处”，而是帮助两个人一起回答：结婚以后，你们什么时候开始真正成为一个新的家庭单位？父母意见、节日安排、彩礼婚礼、同住、养老责任和代际支持，哪些是连接，哪些已经越界，哪些必须先在内部形成共识，再对外表达。
+
+## 使用方式
+1. 先各自独立填写镜像问卷，不要边答边争谁家更合理。
+2. 只挑最容易引发拉扯的 3-5 题进入讨论。
+3. 选对应情景讨论卡，把抽象边界放进真实场景。
+4. 卡住时，再从深聊手册中选 2-3 个问题，去谈忠诚、害怕、站位和边界语言。
+5. 最后填写结果记录页，明确谁负责对外沟通、哪些规则要先立住。
+
+## 模块目标
+帮助伴侣理解：原生家庭对你们关系的影响具体在哪里，你们对“伴侣优先”“小家优先”“孝顺”“体面”“尊重”的理解是否一致，以及你们有没有能力把这些议题从情绪拉扯，变成可执行的边界和规则。
+
+## 关键分歧地图
+1. 对“伴侣优先”和“父母优先”的直觉排序不同。
+2. 有人把父母介入理解为爱与支持，有人体验为控制、审查或联盟压力。
+3. 节假日、探亲频率、同住与养老安排，容易把未说出口的责任预期暴露出来。
+4. 彩礼、嫁妆、婚礼规模和面子支出，常常不是单纯的钱，而是尊重感、地位感和家庭博弈。
+5. 结婚后谁先对外沟通、谁负责挡父母、谁为小家立规则，往往比“说过就算”更关键。
+6. 高风险不只在传统本身，而在于小家庭没有边界语言，只能被动卷入双方家庭剧本。
+
+## 一、镜像问卷
+
+### A. 核心问卷（先做）
+
+#### `M04-Q01 | 原生家庭影响最大的模式`
+- 题目：你的原生家庭最影响你亲密关系的地方是什么？请说出一件你想延续的事和一件你最想停止复制的模式。
+- 回答方式：双栏回答。
+- 对照重点：不是评价原生家庭好坏，而是识别哪些模式会被自动带进婚后生活。
+- 若差异大，建议转入：`M04-D01`、`M04-D05`。
+
+#### `M04-Q02 | 伴侣优先还是父母优先`
+- 题目：你认同“结婚后，伴侣应当在多数重大决策中优先于父母”吗？在什么情境下你会例外？
+- 回答方式：5 分量表 + 举例说明例外场景。
+- 对照重点：这题常常暴露的是代际忠诚冲突，而不只是价值观口号。
+- 若差异大，建议转入：`M04-S01`、`M04-D02`、`M04-D07`。
+
+#### `M04-Q03 | 父母反对时的处理顺序`
+- 题目：如果父母明确反对你们的某个决定（婚礼方式、住房、是否生育、职业选择），你认为最理想的处理顺序是什么？
+- 回答方式：写出步骤顺序。
+- 对照重点：争的往往不是“听不听父母”，而是“谁先稳住内部、谁来对外表达”。
+- 若差异大，建议转入：`M04-S03`、`M04-S05`、`M04-D09`。
+
+#### `M04-Q04 | 你的越界起点`
+- 题目：你怎么区分“关心 / 建议 / 参与 / 干预 / 控制”？对你来说，父母越界通常从哪一步开始？
+- 回答方式：标记自己的越界起点 + 举例。
+- 对照重点：一方的“关心”可能正是另一方的“控制”。
+- 若差异大，建议转入：`M04-S03`、`M04-D06`。
+
+#### `M04-Q05 | 谁先对外沟通`
+- 题目：结婚后你希望谁先和各自父母谈敏感议题：彩礼、婚礼预算、住房、孩子、养老？为什么？
+- 回答方式：按议题逐项填写负责人。
+- 对照重点：站位感和安全感，常常来自“你会不会先替我们说话”。
+- 若差异大，建议转入：`M04-S05`、`M04-S06`、`M04-D09`。
+
+#### `M04-Q06 | 节假日和探亲分配`
+- 题目：节假日、春节、探亲和双方家庭聚会，你理想中的分配方式是什么？哪些日子你会格外在意？
+- 回答方式：写规则 + 特殊节日说明。
+- 对照重点：这里暴露的通常不是时间安排，而是谁家的期待更难违背。
+- 若差异大，建议转入：`M04-S01`、`M04-D03`。
+
+#### `M04-Q07 | 父母介入到底能到哪`
+- 题目：你能接受父母在住房、装修、财务、育儿和日常安排上介入到什么程度？请分别说说底线。
+- 回答方式：分栏目填写“可接受 / 不能接受”。
+- 对照重点：不要只说“我有边界感”，要具体到场景和程度。
+- 若差异大，建议转入：`M04-S03`、`M04-S05`、`M04-D10`。
+
+#### `M04-Q08 | 彩礼婚礼的真正含义`
+- 题目：你对彩礼、嫁妆、婚礼酒席、仪式感和“面子成本”的基本态度是什么？哪些是心意，哪些已经变成负担？
+- 回答方式：双栏回答。
+- 对照重点：争的往往不是钱，而是尊重、交换感和被看见。
+- 若差异大，建议转入：`M04-S02`、`M04-D04`、`M04-D08`。
+
+#### `M04-Q09 | 家庭条件差异下的公平`
+- 题目：如果双方家庭经济条件差异明显，你认为婚礼和相关支出的“公平”应该如何理解？
+- 回答方式：开放回答。
+- 对照重点：一方说公平，另一方说体面时，很容易互相误读。
+- 若差异大，建议转入：`M04-S02`、`M04-D08`。
+
+#### `M04-Q10 | 养老和照护责任`
+- 题目：你如何看待未来对双方父母的养老、照护和金钱支持责任？你更强调平均、按能力、按距离，还是按现实需要？
+- 回答方式：排序 + 原因说明。
+- 对照重点：这题直接决定你们对“两个家庭”还是“一个新家庭”的理解。
+- 若差异大，建议转入：`M04-S04`、`M04-D07`、`M04-D09`。
+
+#### `M04-Q11 | 婚后同住边界`
+- 题目：你能接受婚后与父母同住吗？在什么阶段、多久、以什么规则才可以？
+- 回答方式：开放回答，最好写出底线。
+- 对照重点：很多人说“可以同住”，其实接受的是完全不同的版本。
+- 若差异大，建议转入：`M04-S03`、`M04-S04`、`M04-D10`。
+
+#### `M04-Q12 | 新家庭已经建立的标志`
+- 题目：你认为什么才算“我们已经建立了新家庭边界”？请说出至少 3 个可观察的标志。
+- 回答方式：列出 3-5 个标志。
+- 对照重点：这题能看出你们是否真的有“小家意识”的共同语言。
+- 若差异大，建议转入：`M04-D03`、`M04-D05`、`M04-D09`。
+
+### B. 扩展问卷（有余力再做）
+
+#### `M04-E01 | 在父母面前你还是孩子还是大人`
+- 题目：你在家里更像“还在向父母请示的孩子”，还是“能够独立做主并承担后果的大人”？
+- 回答方式：单选 + 原因说明。
+- 对照重点：这题经常决定婚后谁更容易被父母牵走。
+
+#### `M04-E02 | 父母评价伴侣时的站位`
+- 题目：如果父母在背后评价你的伴侣，你期待自己第一时间怎么站位？
+- 回答方式：开放回答。
+- 对照重点：站位感是很多边界冲突里最核心的情绪来源。
+
+#### `M04-E03 | 最怕哪种原生家庭联盟`
+- 题目：你最不希望婚后继续出现哪种原生家庭联盟：婆媳联盟、母女联盟、父子联盟，还是“谁都来评判伴侣”？
+- 回答方式：单选 + 解释。
+- 对照重点：这题能直接识别婚后最容易形成的隐性对立面。
+
+#### `M04-E04 | 哪些信息不需要向父母汇报`
+- 题目：你希望哪些家庭信息保留在小家庭内部，不需要向父母汇报？
+- 回答方式：列出清单。
+- 对照重点：边界不仅是拒绝介入，也包括信息边界。
+
+#### `M04-E05 | 钥匙、来访和直接决策`
+- 题目：你能接受父母持有你们家钥匙、频繁临时来访、直接帮你们做决定吗？底线是什么？
+- 回答方式：分别作答“可接受 / 不能接受”。
+- 对照重点：很多边界问题不是大冲突，而是日常默认权限。
+
+#### `M04-E06 | 婚礼冲突时最优先保护什么`
+- 题目：如果婚礼形式和双方父母期待冲突，你最优先保护什么：预算、感受、公平、体面，还是彼此立场一致？
+- 回答方式：排序。
+- 对照重点：这是 M04 最典型的“价值排序暴露题”。
+
+#### `M04-E07 | 婚礼对你真正重要的部分`
+- 题目：你更看重婚礼的哪部分：法律与承诺、双方家庭认可、仪式记忆，还是社会展示？
+- 回答方式：排序。
+- 对照重点：婚礼的意义不同，对支出的容忍度也会不同。
+
+#### `M04-E08 | 想保留和切断的原生家庭部分`
+- 题目：你最想保留原生家庭里的哪种温暖或传统？最想切断哪种让你窒息的默认义务？
+- 回答方式：双栏回答。
+- 对照重点：不是彻底切割，而是有意识地选择继承什么。
+
+#### `M04-E09 | 对祖辈参与的期待`
+- 题目：如果未来有孩子，你对祖辈参与的期待是帮忙、共同照料、只在紧急时支持，还是尽量边界清晰？
+- 回答方式：单选 + 原因说明。
+- 对照重点：这是 M04 与 M05 会交叉的高风险题。
+
+#### `M04-E10 | 孝顺和边界会不会冲突`
+- 题目：你认为“孝顺”和“边界”会冲突吗？如果冲突，你更想保护哪一边？
+- 回答方式：开放回答。
+- 对照重点：很多人嘴上说不冲突，实际根本没有操作办法。
+
+#### `M04-E11 | 边界复盘频率`
+- 题目：你希望婚后多久进行一次“和双方父母边界复盘”？
+- 回答方式：填写频率。
+- 对照重点：边界不是一劳永逸，需要复盘。
+
+#### `M04-E12 | 彩礼 / 嫁妆在你心里的象征`
+- 题目：对你来说，彩礼或嫁妆更像尊重、保障、交换、传统，还是谈判工具？
+- 回答方式：排序 + 原因说明。
+- 对照重点：同样一笔钱，在不同人心里可能代表完全不同的东西。
+
+## 二、情景讨论卡
+
+### `M04-S01 | 春节到底先回哪边`
+- 情景：双方父母都坚持春节必须先回自己家，而且都觉得这是理所当然。
+- 先对齐的争点：这是时间分配问题，还是忠诚排序问题。
+- 建议先问：如果只能让一边失望一次，你最怕失望的是谁，为什么？
+- 可转入深聊手册：`D02`、`D03`、`D09`。
+- 高风险信号：你们还没形成内部立场，就先各自回家解释和站队。
+
+### `M04-S02 | 彩礼谈着谈着像交易`
+- 情景：男方家认为彩礼是传统诚意，女方更在意是否被尊重和是否协商。你们如何避免把婚事谈成一场交易？
+- 先对齐的争点：争的是金额、尊重感、公平，还是家族面子。
+- 建议先问：如果这件事最后谈崩，你最难受的是钱本身，还是被怎样对待？
+- 可转入深聊手册：`D04`、`D08`。
+- 高风险信号：开始使用“你家就是”“你们家都”这类整体否定语言。
+
+### `M04-S03 | 父母频繁过问生活决策`
+- 情景：婚后某位父母频繁过问你们的生活决策，一方觉得是关心，一方觉得是越界。你们怎么设“提醒—沟通—收口”的边界层级？
+- 先对齐的争点：这是关心方式问题，还是边界定义不一致。
+- 建议先问：如果我要对父母说“不”，你最怕发生什么后果？
+- 可转入深聊手册：`D02`、`D06`、`D10`。
+- 高风险信号：伴侣永远不出面，由另一方单独对抗自己的公婆 / 岳父母。
+
+### `M04-S04 | 老人突然需要长期照护`
+- 情景：一位老人突然生病，需要长期照护，而你们的工作城市离老家较远。你们会如何分工与取舍？
+- 先对齐的争点：责任怎么分、谁承担迁移成本、照护期限如何看待。
+- 建议先问：你最怕我在这件事上把哪种责任默认给你？
+- 可转入深聊手册：`D07`、`D09`、`D10`。
+- 高风险信号：一方直接默认另一方应辞职 / 回老家 / 承担主要照护。
+
+### `M04-S05 | 父母想参与婚房和装修决定`
+- 情景：一方父母希望婚房写上自己的意见并参与装修，另一方强烈反感。你们准备谁先出面沟通，沟通到什么程度？
+- 先对齐的争点：争的是钱、权限、尊重，还是对小家主导权的定义。
+- 建议先问：如果父母出了钱，他们最想换来的究竟是安全感还是决定权？
+- 可转入深聊手册：`D05`、`D06`、`D09`。
+- 高风险信号：拿出资当作默认控制权凭证。
+
+### `M04-S06 | 家族群公开评价你的伴侣`
+- 情景：家族群里有人公开评价你的伴侣“不够懂事”，你们如何对外回应，如何在内部修复站位感？
+- 先对齐的争点：谁先回应、回应给谁看、内部受伤怎样修复。
+- 建议先问：在这种场景里，你最需要我先做的，是保护你、澄清事实，还是明确站位？
+- 可转入深聊手册：`D02`、`D08`、`D09`。
+- 高风险信号：一方为了家庭气氛选择沉默，另一方从此对站位感失去信任。
+
+## 三、深聊手册
+
+### A. 当你们卡在“代际忠诚和权力结构”
+- `M04-D01` 你小时候家里“谁说了算”？这种权力结构今天还在影响你吗？
+- `M04-D02` 你最怕我在面对双方父母时站在哪一边？为什么？
+- `M04-D07` 对你来说，真正的孝顺更像服从、陪伴、稳定支持，还是帮助彼此不过度牺牲？
+
+### B. 当你们卡在“传统、面子和尊重感”
+- `M04-D04` 哪些传统你觉得有温度，哪些传统你觉得只剩下负担？
+- `M04-D08` 如果婚礼、彩礼或面子问题让你不舒服，你最怕我误解你成什么样的人？
+- `M04-D05` 如果我们真的要建立自己的家庭文化，你最想保留和最想改写的各是什么？
+
+### C. 当你们卡在“小家边界还不够清楚”
+- `M04-D03` 你觉得“结婚以后还是一家人”的“一家人”具体指谁？边界在哪里？
+- `M04-D06` 你心里有没有一个“不敢直接对父母说”的边界？那个卡点是什么？
+- `M04-D10` 如果以后边界多次被突破，你希望我们采取怎样的升级处理方式？
+
+### D. 当你们卡在“伴侣保护和站位感”
+- `M04-D09` 你期待我怎样保护我们的小家，才能让你感觉我们不是各自回娘家 / 回婆家，而是在一起？
+
+### 使用提醒
+- M04 讨论时，最容易陷入“谁家更过分”的比较，尽量回到“我们自己的边界是什么”。
+- 如果已经变成对各自父母的人格评判，先暂停。
+- 这个模块的目标不是让双方父母满意，而是先让小家庭内部形成清晰立场。
+
+## 四、结果记录页
+```yaml
+module: M04 原生家庭、家庭边界与婚礼习俗
+date:
+discussion_duration:
+emotional_climate: 轻松 | 紧张 | 回避 | 有压迫感
+status: 一致 | 可协商 | 暂无结论 | 高风险冲突
+questionnaire_summary:
+  biggest_gaps:
+  easiest_agreements:
+  high_trigger_questions:
+agreements:
+major_differences:
+reason_behind_difference:
+  - 代际忠诚冲突
+  - 面子与公平冲突
+  - 责任分配冲突
+  - 小家边界不清
+parental_triggers:
+  my_family:
+  your_family:
+external_communication_owner:
+  - 哪个议题由谁先和自己父母沟通
+need_more_information:
+unresolved_customs:
+  - 彩礼
+  - 婚礼形式
+  - 节日安排
+  - 同住
+  - 养老
+  - 孩子相关边界
+temporary_conclusion:
+need_rules:
+  - 哪些事必须先内部统一再对外说
+  - 哪些信息不向父母同步
+  - 遇到父母越界时的提醒和升级流程
+  - 节日 / 同住 / 出资 / 养老的初步规则
+next_action:
+review_date:
+risk_radar:
+  values_alignment:
+  communication_safety:
+  decision_collaboration:
+  resource_alignment:
+  family_boundary_clarity:
+  long_term_coordination:
+```
+
+## 五、风险雷达维度映射
+- 价值观一致度：重点看 `Q02` `Q08` `E10` `D07`
+- 沟通安全感：重点看 `Q05` `E02` `S06` `D06`
+- 决策协商能力：重点看 `Q03` `Q06` `S01` `S05`
+- 金钱与资源协同度：重点看 `Q08` `Q09` `E12` `S02`
+- 家庭边界清晰度：重点看 `Q04` `Q07` `Q11` `S03`
+- 长期生活协同度：重点看 `Q10` `Q12` `S04` `D09`
+
+## 可扩展标签
+`family_boundary` `family_of_origin` `parents` `wedding` `bride_price` `tradition` `eldercare` `co_residence`
+
+## 引用来源
+- 《家庭边界问卷的编制及信效度检验》
+- Intergenerational Family Boundaries and Adult Children’s Marital Relationships（代际边界研究）
+- FOCCUS Pre-Marriage Inventory：原生家庭 / 扩大家庭相关维度
+- 《近半数受访青年希望农村彩礼在 10 万元以内》
+- 《婚俗大调查：超一半青年选择中式婚宴！》
+- 返乡青年简办婚礼相关报道
+- 公众号补充材料："写给所有催婚的父母"、"彩礼谈崩了：成年人的爱情，先算账后谈爱"、"婚礼上退还 18.8 万彩礼"
+
+
+</script>
+
+  <div class="page">
+    <section class="hero" id="top">
+      <div class="eyebrow">Interactive Module Archive</div>
+      <h1>M04 原生家庭、家庭边界与婚礼习俗</h1>
+      <p>
+        这是把原始 Markdown 模块重组后的可交互网页版本。信息完整保留，阅读上改成“总览 → 问卷 → 情景卡 → 深聊手册 → 结果记录 / 风险雷达”的单页流程，方便浏览、讨论、归档与后续继续扩展。
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#questionnaire">进入镜像问卷</a>
+        <a class="button" href="#scenario-cards">查看情景讨论卡</a>
+        <a class="button" href="#workspace">打开结果记录工作台</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong id="stat-question-count">0</strong><span>问卷题目总数（核心 + 扩展）</span></div>
+        <div class="stat"><strong id="stat-scenario-count">0</strong><span>情景讨论卡数量</span></div>
+        <div class="stat"><strong id="stat-prompt-count">0</strong><span>深聊追问数量</span></div>
+        <div class="stat"><strong id="stat-risk-count">6</strong><span>风险雷达维度</span></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="block">
+          <div class="sidebar-label">快速导航</div>
+          <nav class="toc" id="toc"></nav>
+        </div>
+        <div class="block">
+          <div class="sidebar-label">搜索内容</div>
+          <div class="search-box">
+            <input id="searchInput" type="search" placeholder="搜题号、关键词、场景、提示词…" />
+            <div class="hint">支持直接搜 M04-Q01、关键词、场景、提示词，也支持直接搜 D05、S03 这类短编号。</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="sidebar-label">内容分区筛选</div>
+          <div class="chips" id="chips"></div>
+        </div>
+        <div class="block">
+          <div class="sidebar-label">操作</div>
+          <div class="tag-cloud">
+            <button class="button" id="expandAll">全部展开</button>
+            <button class="button" id="collapseAll">全部收起</button>
+            <button class="button" id="clearFilter">清空筛选</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="panel" id="overview">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>模块总览</h2>
+                <p>先把“钱代表什么、边界在哪、谁有决定权、风险能承受到哪里”讲清楚，再建立共同规则，而不是直接争输赢。</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid two">
+              <div class="info-card">
+                <h3>模块定位</h3>
+                <p id="module定位"></p>
+              </div>
+              <div class="info-card">
+                <h3>模块目标</h3>
+                <p id="module目标"></p>
+              </div>
+            </div>
+            <div class="section-group">
+              <div class="section-card">
+                <h3>使用方式</h3>
+                <ol class="section-list" id="usageList"></ol>
+              </div>
+              <div class="section-card">
+                <h3>关键分歧地图</h3>
+                <ol class="section-list" id="conflictList"></ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel filterable-section" id="questionnaire" data-section="questionnaire">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>镜像问卷</h2>
+                <p>先各自独立填写，再挑分歧最大、最容易反复卡住的题目进入讨论。网页版把核心题和扩展题分开展示，并支持全文搜索。</p>
+              </div>
+              <div class="muted-badge" id="questionnaireCount">0 个条目</div>
+            </div>
+          </div>
+          <div class="panel-body" id="questionnaireBody"></div>
+        </section>
+
+        <section class="panel filterable-section" id="scenario-cards" data-section="scenario">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>情景讨论卡</h2>
+                <p>把抽象立场丢进现实情景，优先对齐你们真正卡住的争点，再判断是规则问题、边界问题、忠诚问题，还是安全感问题。</p>
+              </div>
+              <div class="muted-badge" id="scenarioCount">0 张卡片</div>
+            </div>
+          </div>
+          <div class="panel-body" id="scenarioBody"></div>
+        </section>
+
+        <section class="panel filterable-section" id="deep-talk" data-section="deepTalk">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>深聊手册</h2>
+                <p>卡住时不要继续互相证明，改成追问“为什么这件事对我这么重要”。每组只挑最贴近当下冲突的 2-3 个问题即可。</p>
+              </div>
+              <div class="muted-badge" id="deepTalkCount">0 个追问</div>
+            </div>
+          </div>
+          <div class="panel-body" id="deepTalkBody"></div>
+        </section>
+
+        <section class="panel filterable-section" id="workspace" data-section="workspace">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>结果记录页与风险雷达工作台</h2>
+                <p>下方记录面板和雷达评分会实时生成 YAML 内容，方便你直接复制到别处保存，同时继续保留网页内的填写与浏览体验。</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="workspace-grid">
+              <div class="workspace-card">
+                <h3>讨论记录表单</h3>
+                <p class="hint">工作台会根据原始 YAML 模板自动生成字段；你在这里填写、选择或评分后，右侧 YAML 会实时更新，方便直接复制保存。</p>
+                <div class="form-grid" id="recordForm"></div>
+              </div>
+              <div class="workspace-card">
+                <h3>风险雷达实时视图</h3>
+                <div class="radar-grid" id="radarControls"></div>
+                <canvas id="radarCanvas" width="620" height="620"></canvas>
+                <p class="hint">维度映射来自原文，滑动评分会同步写回到 YAML。</p>
+              </div>
+            </div>
+            <div class="workspace-grid" style="margin-top:18px;">
+              <div class="yaml-card">
+                <h3>实时 YAML 记录内容</h3>
+                <pre id="yamlTemplate"></pre>
+              </div>
+              <div class="workspace-card">
+                <h3>风险雷达维度映射</h3>
+                <div class="item-grid" id="riskMapping"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel filterable-section" id="references" data-section="references">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div>
+                <h2>标签、来源与原文归档</h2>
+                <p>原文中的可扩展标签、引用来源和完整 Markdown 源文都保留在这里，后续继续加模块或做二次转换时可以直接复用。</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="section-group">
+              <div class="section-card">
+                <h3>可扩展标签</h3>
+                <div class="tag-cloud" id="tagList"></div>
+              </div>
+              <div class="section-card">
+                <h3>引用来源</h3>
+                <div class="reference-list" id="referenceList"></div>
+              </div>
+            </div>
+            <div class="raw-drawer">
+              <details class="subsection">
+                <summary>
+                  <div class="subsection-head">
+                    <div class="item-title-wrap">
+                      <div class="item-title">查看完整原始 Markdown</div>
+                      <p class="hint">为了确保信息零损失，网页内保留了整份原文，可随时核对。</p>
+                    </div>
+                  </div>
+                </summary>
+                <div class="subsection-body">
+                  <div class="subsection-content">
+                    <pre id="rawMarkdown"></pre>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <div class="empty-state" id="emptyState">当前筛选下没有匹配内容，换个关键词试试。</div>
+        <p class="footer-note">归档位置：d:/marriage/web_archive/M04_原生家庭-家庭边界-婚礼习俗/index.html</p>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const source = document.getElementById("source-md").textContent.replace(/\r/g, "").trim();
+
+    function normalizeCode(code) {
+      const trimmed = String(code || "").trim().toUpperCase();
+      if (!trimmed) return "";
+      if (/^M\d{2}-[QESD]\d{2}$/.test(trimmed)) return trimmed;
+      if (/^[QESD]\d{2}$/.test(trimmed)) return `M04-${trimmed}`;
+      return trimmed;
+    }
+
+    function buildTargetId(code) {
+      const normalized = normalizeCode(code);
+      return normalized ? `ref-${normalized.toLowerCase()}` : "";
+    }
+
+    function renderInline(text) {
+      return text
+        .replace(/`([^`]+)`/g, (_, rawCode) => renderCodeReference(rawCode))
+        .replace(/“([^”]+)”/g, '“<span>$1</span>”');
+    }
+
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function parseDocument(md) {
+      const lines = md.split("\n");
+      const doc = {
+        title: "",
+        introSections: [],
+        questionnaire: [],
+        scenarios: [],
+        deepTalk: [],
+        reminders: [],
+        yaml: "",
+        riskMapping: [],
+        tags: [],
+        references: []
+      };
+
+      let currentMain = "intro";
+      let currentGroup = null;
+      let currentItem = null;
+      let inCode = false;
+      let codeBuffer = [];
+
+      const flushCurrentItem = () => {
+        if (!currentItem) return;
+        if (currentMain === "questionnaire") {
+          if (!currentGroup.items) currentGroup.items = [];
+          currentGroup.items.push(currentItem);
+        } else if (currentMain === "scenario") {
+          doc.scenarios.push(currentItem);
+        }
+        currentItem = null;
+      };
+
+      const pushDeepPrompt = (text) => {
+        const match = text.match(/^`([^`]+)`\s*(.+)$/);
+        const prompt = match ? { code: match[1], text: match[2] } : { code: "", text };
+        if (currentGroup) {
+          if (!currentGroup.prompts) currentGroup.prompts = [];
+          currentGroup.prompts.push(prompt);
+        }
+      };
+
+      for (let i = 0; i < lines.length; i += 1) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith("```") && !inCode) {
+          inCode = true;
+          codeBuffer = [];
+          continue;
+        }
+        if (trimmed.startsWith("```") && inCode) {
+          inCode = false;
+          doc.yaml = codeBuffer.join("\n");
+          continue;
+        }
+        if (inCode) {
+          codeBuffer.push(line);
+          continue;
+        }
+        if (!trimmed) continue;
+
+        if (trimmed.startsWith("# ")) {
+          doc.title = trimmed.replace(/^#\s+/, "");
+          continue;
+        }
+
+        if (trimmed.startsWith("## ")) {
+          flushCurrentItem();
+          const title = trimmed.replace(/^##\s+/, "");
+          if (title.includes("镜像问卷")) {
+            currentMain = "questionnaire";
+            currentGroup = null;
+          } else if (title.includes("情景讨论卡")) {
+            currentMain = "scenario";
+            currentGroup = null;
+          } else if (title.includes("深聊手册")) {
+            currentMain = "deepTalk";
+            currentGroup = null;
+          } else if (title.includes("结果记录页")) {
+            currentMain = "result";
+            currentGroup = null;
+          } else if (title.includes("风险雷达维度映射")) {
+            currentMain = "riskMapping";
+            currentGroup = null;
+          } else if (title.includes("可扩展标签")) {
+            currentMain = "tags";
+            currentGroup = null;
+          } else if (title.includes("引用来源")) {
+            currentMain = "references";
+            currentGroup = null;
+          } else {
+            currentMain = "intro";
+            currentGroup = { title, lines: [] };
+            doc.introSections.push(currentGroup);
+          }
+          continue;
+        }
+
+        if (trimmed.startsWith("### ")) {
+          flushCurrentItem();
+          const title = trimmed.replace(/^###\s+/, "");
+          if (currentMain === "questionnaire") {
+            currentGroup = { title, items: [] };
+            doc.questionnaire.push(currentGroup);
+          } else if (currentMain === "scenario") {
+            const match = title.match(/^`([^`]+)\s*\|\s*([^`]+)`$/);
+            currentItem = {
+              rawTitle: title,
+              code: match ? match[1].trim() : "",
+              title: match ? match[2].trim() : title,
+              lines: []
+            };
+          } else if (currentMain === "deepTalk") {
+            currentGroup = { title, prompts: [] };
+            doc.deepTalk.push(currentGroup);
+          } else {
+            currentGroup = { title, lines: [] };
+          }
+          continue;
+        }
+
+        if (trimmed.startsWith("#### ")) {
+          flushCurrentItem();
+          const raw = trimmed.replace(/^####\s+/, "");
+          const match = raw.match(/^`([^`]+)\s*\|\s*([^`]+)`$/);
+          currentItem = {
+            rawTitle: raw,
+            code: match ? match[1].trim() : "",
+            title: match ? match[2].trim() : raw,
+            lines: []
+          };
+          continue;
+        }
+
+        if (currentMain === "intro" && currentGroup) {
+          currentGroup.lines.push(trimmed.replace(/^\d+\.\s+/, ""));
+          continue;
+        }
+
+        if (currentMain === "questionnaire" && currentItem) {
+          currentItem.lines.push(trimmed.replace(/^-\s+/, ""));
+          continue;
+        }
+
+        if (currentMain === "scenario") {
+          if (!currentItem && trimmed.startsWith("### ")) continue;
+          if (!currentItem && trimmed.startsWith("- ")) continue;
+          if (!currentItem && trimmed.startsWith("`")) continue;
+          if (!currentItem && currentGroup && currentGroup.title) continue;
+          if (!currentItem) {
+            const raw = trimmed.replace(/^###\s+/, "");
+            const match = raw.match(/^`([^`]+)\s*\|\s*([^`]+)`$/);
+            currentItem = {
+              rawTitle: raw,
+              code: match ? match[1].trim() : "",
+              title: match ? match[2].trim() : raw,
+              lines: []
+            };
+          } else {
+            currentItem.lines.push(trimmed.replace(/^-\s+/, ""));
+          }
+          continue;
+        }
+
+        if (currentMain === "deepTalk") {
+          if (trimmed.startsWith("- `")) {
+            pushDeepPrompt(trimmed.replace(/^-\s+/, ""));
+          } else if (trimmed.startsWith("- ")) {
+            doc.reminders.push(trimmed.replace(/^-\s+/, ""));
+          }
+          continue;
+        }
+
+        if (currentMain === "riskMapping" && trimmed.startsWith("- ")) {
+          const [label, rest] = trimmed.replace(/^-\s+/, "").split("：");
+          doc.riskMapping.push({ label, text: rest || "" });
+          continue;
+        }
+
+        if (currentMain === "tags") {
+          doc.tags = trimmed.match(/`([^`]+)`/g)?.map((t) => t.replace(/`/g, "")) || [];
+          continue;
+        }
+
+        if (currentMain === "references" && trimmed.startsWith("- ")) {
+          doc.references.push(trimmed.replace(/^-\s+/, ""));
+        }
+      }
+
+      flushCurrentItem();
+      return doc;
+    }
+
+    const doc = parseDocument(source);
+    doc.deepTalk = doc.deepTalk.filter((group) => (group.prompts || []).length > 0);
+
+    const codeRegistry = new Map();
+
+    function registerCode(code) {
+      const normalized = normalizeCode(code);
+      if (!normalized) return;
+      codeRegistry.set(normalized, buildTargetId(normalized));
+      const shortCode = normalized.replace(/^M\d{2}-/, "");
+      if (shortCode && !codeRegistry.has(shortCode)) {
+        codeRegistry.set(shortCode, buildTargetId(normalized));
+      }
+    }
+
+    function renderCodeReference(code) {
+      const raw = String(code || "").trim();
+      const normalized = normalizeCode(raw);
+      const targetId = codeRegistry.get(normalized) || codeRegistry.get(raw.toUpperCase());
+      const label = escapeHtml(raw);
+      if (!targetId) {
+        return `<code class="inline">${label}</code>`;
+      }
+      return `<a class="code-jump" href="#${targetId}" data-target="${targetId}"><code class="inline">${label}</code></a>`;
+    }
+
+    doc.questionnaire.forEach((group) => (group.items || []).forEach((item) => registerCode(item.code)));
+    doc.scenarios.forEach((item) => registerCode(item.code));
+    doc.deepTalk.forEach((group) => (group.prompts || []).forEach((prompt) => registerCode(prompt.code)));
+
+    const introMap = Object.fromEntries(doc.introSections.map((section) => [section.title, section.lines]));
+
+    document.getElementById("module定位").innerHTML = renderInline((introMap["模块定位"] || []).join(" "));
+    document.getElementById("module目标").innerHTML = renderInline((introMap["模块目标"] || []).join(" "));
+
+    function fillList(elementId, items) {
+      const el = document.getElementById(elementId);
+      el.innerHTML = "";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = renderInline(item);
+        el.appendChild(li);
+      });
+    }
+
+    fillList("usageList", introMap["使用方式"] || []);
+    fillList("conflictList", introMap["关键分歧地图"] || []);
+
+    function linesToHtml(lines) {
+      return lines
+        .map((line) => {
+          const parts = line.split(/：(.+)/);
+          if (parts.length > 1) {
+            return `<p class="key-line"><strong>${escapeHtml(parts[0])}：</strong>${renderInline(escapeHtml(parts[1]))}</p>`;
+          }
+          return `<p>${renderInline(escapeHtml(line))}</p>`;
+        })
+        .join("");
+    }
+
+    function createItemCard(item, sectionName, openByDefault = false) {
+      const details = document.createElement("details");
+      details.className = "item searchable";
+      if (openByDefault) details.open = true;
+      details.dataset.section = sectionName;
+      details.dataset.search = `${item.code} ${item.title} ${item.lines.join(" ")}`.toLowerCase();
+      if (item.code) details.id = buildTargetId(item.code);
+      details.innerHTML = `
+        <summary>
+          <div class="item-head">
+            <span class="item-code">${escapeHtml(item.code || sectionName)}</span>
+            <div class="item-title-wrap">
+              <div class="item-title">${renderInline(escapeHtml(item.title))}</div>
+            </div>
+          </div>
+        </summary>
+        <div class="item-body">
+          <div class="item-content">${linesToHtml(item.lines)}</div>
+        </div>
+      `;
+      return details;
+    }
+
+
+    function createGroup(group, sectionName, target, openItems = false) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "section-group group searchable-group";
+      wrapper.dataset.section = sectionName;
+      wrapper.dataset.search = `${group.title} ${(group.items || []).map((item) => `${item.code} ${item.title} ${item.lines.join(" ")}`).join(" ")}`.toLowerCase();
+      const head = document.createElement("div");
+      head.className = "group-head";
+      head.innerHTML = `<h3>${renderInline(escapeHtml(group.title))}</h3><span class="muted-badge">${(group.items || []).length} 个条目</span>`;
+      const accordion = document.createElement("div");
+      accordion.className = "accordion";
+      (group.items || []).forEach((item, index) => accordion.appendChild(createItemCard(item, sectionName, openItems && index === 0)));
+      wrapper.appendChild(head);
+      wrapper.appendChild(accordion);
+      target.appendChild(wrapper);
+    }
+
+    const questionnaireBody = document.getElementById("questionnaireBody");
+    doc.questionnaire.forEach((group, index) => createGroup(group, "questionnaire", questionnaireBody, index === 0));
+
+    const scenarioBody = document.getElementById("scenarioBody");
+    const scenarioGroup = document.createElement("div");
+    scenarioGroup.className = "accordion";
+    doc.scenarios.forEach((item, index) => scenarioGroup.appendChild(createItemCard(item, "scenario", index < 2)));
+    scenarioBody.appendChild(scenarioGroup);
+
+    const deepTalkBody = document.getElementById("deepTalkBody");
+    doc.deepTalk.forEach((group, idx) => {
+      const details = document.createElement("details");
+      details.className = "subsection searchable searchable-group";
+      details.open = idx === 0;
+      details.dataset.section = "deepTalk";
+      details.dataset.search = `${group.title} ${group.prompts.map((prompt) => `${prompt.code} ${prompt.text}`).join(" ")}`.toLowerCase();
+      const promptsHtml = group.prompts
+        .map((prompt) => `
+          <div class="subsection-card searchable" ${prompt.code ? `id="${buildTargetId(prompt.code)}"` : ""} data-section="deepTalk" data-search="${escapeHtml(`${prompt.code} ${prompt.text}`.toLowerCase())}">
+            <h3>${prompt.code ? `<span class="item-code" style="margin-right:10px;">${escapeHtml(prompt.code)}</span>` : ""}${renderInline(escapeHtml(prompt.text))}</h3>
+          </div>
+        `)
+        .join("");
+
+      details.innerHTML = `
+        <summary>
+          <div class="subsection-head">
+            <div class="item-title-wrap">
+              <div class="item-title">${renderInline(escapeHtml(group.title))}</div>
+            </div>
+            <span class="muted-badge">${group.prompts.length} 个追问</span>
+          </div>
+        </summary>
+        <div class="subsection-body">
+          <div class="subsection-content">${promptsHtml}</div>
+        </div>
+      `;
+      deepTalkBody.appendChild(details);
+    });
+
+    if (doc.reminders.length) {
+      const reminderCard = document.createElement("div");
+      reminderCard.className = "section-card";
+      reminderCard.innerHTML = `<h3>使用提醒</h3><ul class="section-list">${doc.reminders.map((line) => `<li>${renderInline(escapeHtml(line))}</li>`).join("")}</ul>`;
+      deepTalkBody.appendChild(reminderCard);
+    }
+
+    document.getElementById("rawMarkdown").textContent = source;
+
+    const riskMapping = document.getElementById("riskMapping");
+    doc.riskMapping.forEach((entry) => {
+      const card = document.createElement("div");
+      card.className = "subsection-card searchable";
+      card.dataset.section = "workspace";
+      card.dataset.search = `${entry.label} ${entry.text}`.toLowerCase();
+      card.innerHTML = `<h3>${escapeHtml(entry.label)}</h3><p>${renderInline(escapeHtml(entry.text))}</p>`;
+      riskMapping.appendChild(card);
+    });
+    const yamlTemplateEl = document.getElementById("yamlTemplate");
+    const recordForm = document.getElementById("recordForm");
+
+    const labelMap = {
+      module: "模块",
+      date: "日期",
+      discussion_duration: "讨论时长",
+      emotional_climate: "情绪氛围",
+      status: "当前状态",
+      questionnaire_summary: "问卷摘要",
+      biggest_gaps: "分歧最大的问题",
+      easiest_agreements: "最容易达成一致的点",
+      high_trigger_questions: "高触发问题",
+      agreements: "已形成的共识",
+      major_differences: "重大差异",
+      reason_behind_difference: "差异背后的原因",
+      need_more_information: "还需要补充的信息",
+      temporary_conclusion: "临时结论",
+      next_action: "下一步动作",
+      review_date: "复盘日期",
+      need_rules: "待建立规则",
+      relationship_protection_rules: "关系保护规则",
+      scenario_cards_used: "已使用情景卡",
+      deep_prompts_used: "已使用深聊提示",
+      risk_radar: "风险雷达",
+      values_alignment: "价值观一致度",
+      communication_safety: "沟通安全感",
+      decision_collaboration: "决策协商能力",
+      resource_alignment: "资源协同度",
+      family_boundary_clarity: "家庭边界清晰度",
+      long_term_coordination: "长期生活协同度",
+      value_alignment_type: "价值观差异类型",
+      priority_mapping: "优先级映射",
+      daily_life: "日常生活",
+      conflict_moments: "冲突时刻",
+      long_term_future: "长期未来",
+      conflict_pattern: "冲突模式",
+      my_style: "我的风格",
+      your_style: "对方风格",
+      overlap_or_mismatch: "重叠 / 错位",
+      emotional_needs: "情绪需求",
+      my_need: "我的需求",
+      your_need: "对方需求",
+      repair_mechanism: "修复机制",
+      currently_effective: "当前有效",
+      still_missing: "仍然缺失",
+      vulnerability_safety: "脆弱表达安全感",
+      what_makes_it_safe: "哪些让它安全",
+      what_shuts_it_down: "哪些会让它关闭",
+      parental_triggers: "家庭触发点",
+      my_family: "我家",
+      your_family: "对方家",
+      external_communication_owner: "对外沟通责任",
+      unresolved_customs: "未解决的习俗 / 议题",
+      current_position: "当前立场",
+      fertility_decision: "生育决定",
+      revisit_condition: "复谈条件",
+      prenup_asset_focus: "婚前财产 / 债务关注点",
+      disclosed_assets_or_debts: "已披露资产 / 债务",
+      unresolved_major_assets: "尚未解决的大额资产议题",
+      formal_agreement_needed: "是否需要正式约定"
+    };
+
+    const radarLabelMap = {
+      values_alignment: "价值观一致度",
+      communication_safety: "沟通安全感",
+      decision_collaboration: "决策协商能力",
+      resource_alignment: "金钱与资源协同度",
+      family_boundary_clarity: "家庭边界清晰度",
+      long_term_coordination: "长期生活协同度"
+    };
+
+    function prettyKey(key) {
+      return labelMap[key] || key.replace(/_/g, " ");
+    }
+
+    function pathKey(path) {
+      return path.join(".");
+    }
+
+    function finalizeSchemaNode(node) {
+      if (node.type === "pending") {
+        if (node.items && node.items.length) {
+          node.type = "list";
+        } else if (node.children && node.children.length) {
+          node.type = "object";
+        } else {
+          node.type = "scalar";
+          node.value = "";
+        }
+      }
+      (node.children || []).forEach(finalizeSchemaNode);
+      return node;
+    }
+
+    function parseYamlSchema(yamlText) {
+      const root = { key: "__root__", type: "object", path: [], children: [], items: [] };
+      const stack = [{ indent: -1, node: root }];
+      const lines = yamlText.split("\n");
+
+      lines.forEach((rawLine) => {
+        const line = rawLine.replace(/\t/g, "  " );
+        const trimmed = line.trim();
+        if (!trimmed) return;
+        const indent = (line.match(/^ */) || [""])[0].length;
+
+        while (stack.length > 1 && indent <= stack[stack.length - 1].indent) {
+          finalizeSchemaNode(stack.pop().node);
+        }
+
+        const parent = stack[stack.length - 1].node;
+        if (trimmed.startsWith("- ") ) {
+          if (parent.type === "pending") parent.type = "list";
+          if (!parent.items) parent.items = [];
+          parent.items.push(trimmed.replace(/^-\s+/, ""));
+          return;
+        }
+
+        const match = trimmed.match(/^([^:]+):(.*)$/);
+        if (!match) return;
+        if (parent.type === "pending") parent.type = "object";
+        const key = match[1].trim();
+        const value = match[2].trim();
+        const node = {
+          key,
+          path: [...(parent.path || []), key],
+          type: value ? "scalar" : "pending",
+          value,
+          options: value && value.includes(" | ") ? value.split("|").map((item) => item.trim()).filter(Boolean) : null,
+          children: [],
+          items: []
+        };
+        if (!parent.children) parent.children = [];
+        parent.children.push(node);
+        if (node.type === "pending") {
+          stack.push({ indent, node });
+        }
+      });
+
+      while (stack.length > 1) {
+        finalizeSchemaNode(stack.pop().node);
+      }
+      return finalizeSchemaNode(root);
+    }
+
+    const yamlSchema = parseYamlSchema(doc.yaml);
+    const formState = {};
+
+    function collectDefaults(node) {
+      if (node.key !== "__root__") {
+        const key = pathKey(node.path);
+        if (node.type === "list") {
+          formState[key] = (node.items || []).join("\n");
+        } else if (node.type === "scalar") {
+          formState[key] = node.value || "";
+        }
+      }
+      (node.children || []).forEach(collectDefaults);
+    }
+
+    collectDefaults(yamlSchema);
+    const dateFieldKey = Object.keys(formState).find((key) => key === "date");
+    if (dateFieldKey && !formState[dateFieldKey]) {
+      formState[dateFieldKey] = new Date().toLocaleDateString("en-CA");
+    }
+
+    function splitList(value, allowDelimiters = false) {
+      const trimmed = String(value || "").trim();
+      if (!trimmed) return [];
+      const base = trimmed.includes("\n") ? trimmed.split(/\n+/) : [trimmed];
+      const items = allowDelimiters && base.length === 1 ? base[0].split(/[，,、；;]+/) : base;
+      return items.map((item) => item.trim()).filter(Boolean);
+    }
+
+    function yamlQuote(value) {
+      return `"${String(value).replace(/\\/g, "\\\\").replace(/"/g, '\"')}"`;
+    }
+
+    function renderYamlNode(node, indent = 0) {
+      const pad = "  ".repeat(indent);
+      if (node.key === "__root__") {
+        return (node.children || []).map((child) => renderYamlNode(child, 0)).join("\n");
+      }
+
+      const stateValue = formState[pathKey(node.path)] ?? "";
+      if (node.type === "object") {
+        const renderedChildren = (node.children || []).map((child) => renderYamlNode(child, indent + 1)).join("\n");
+        return renderedChildren ? `${pad}${node.key}:\n${renderedChildren}` : `${pad}${node.key}:`;
+      }
+
+      if (node.type === "list") {
+        const items = splitList(stateValue, true);
+        if (!items.length) return `${pad}${node.key}:`;
+        return `${pad}${node.key}:\n${items.map((item) => `${pad}  - ${yamlQuote(item)}`).join("\n")}`;
+      }
+
+      if (!stateValue) return `${pad}${node.key}:`;
+      if (node.path[0] === "risk_radar") return `${pad}${node.key}: ${stateValue}`;
+      if (String(stateValue).includes("\n")) {
+        return `${pad}${node.key}: |-\n${String(stateValue)
+          .split("\n")
+          .map((line) => `${pad}  ${line}`)
+          .join("\n")}`;
+      }
+      return `${pad}${node.key}: ${yamlQuote(stateValue)}`;
+    }
+
+    function updateYamlTemplate() {
+      yamlTemplateEl.textContent = renderYamlNode(yamlSchema);
+    }
+
+    function isDateField(node) {
+      return node.key === "date" || node.key.endsWith("_date");
+    }
+
+    function isShortTextField(node) {
+      return ["discussion_duration", "module"].includes(node.key);
+    }
+
+    function shouldUseTextarea(node) {
+      if (node.type === "list") return true;
+      if (node.options && node.options.length) return false;
+      if (isDateField(node) || isShortTextField(node)) return false;
+      return true;
+    }
+
+    function bindControl(control, node, formatter = (value) => value) {
+      const key = pathKey(node.path);
+      control.value = formatter(formState[key] || "");
+      const handler = () => {
+        formState[key] = control.value;
+        updateYamlTemplate();
+      };
+      control.addEventListener("input", handler);
+      control.addEventListener("change", handler);
+    }
+
+    function createScalarField(node) {
+      const field = document.createElement("div");
+      field.className = shouldUseTextarea(node) ? "field wide" : "field";
+      const label = document.createElement("label");
+      label.textContent = prettyKey(node.key);
+      field.appendChild(label);
+
+      if (node.options && node.options.length) {
+        const select = document.createElement("select");
+        const emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.textContent = "未填写";
+        select.appendChild(emptyOption);
+        node.options.forEach((option) => {
+          const optionEl = document.createElement("option");
+          optionEl.value = option;
+          optionEl.textContent = option;
+          select.appendChild(optionEl);
+        });
+        bindControl(select, node);
+        field.appendChild(select);
+        return field;
+      }
+
+      if (isDateField(node)) {
+        const input = document.createElement("input");
+        input.type = "date";
+        bindControl(input, node);
+        field.appendChild(input);
+        return field;
+      }
+
+      if (shouldUseTextarea(node)) {
+        const textarea = document.createElement("textarea");
+        bindControl(textarea, node);
+        field.appendChild(textarea);
+        return field;
+      }
+
+      const input = document.createElement("input");
+      input.type = "text";
+      bindControl(input, node);
+      if (node.key === "module") input.readOnly = true;
+      field.appendChild(input);
+      return field;
+    }
+
+    function createListField(node) {
+      const field = document.createElement("div");
+      field.className = "field wide";
+      const label = document.createElement("label");
+      label.textContent = prettyKey(node.key);
+      const textarea = document.createElement("textarea");
+      bindControl(textarea, node);
+      field.appendChild(label);
+      field.appendChild(textarea);
+      return field;
+    }
+
+    function createObjectField(node, depth = 0) {
+      const field = document.createElement("div");
+      field.className = "field wide";
+      const card = document.createElement("div");
+      card.className = depth === 0 ? "section-card" : "subsection-card";
+      const heading = document.createElement("h3");
+      heading.textContent = prettyKey(node.key);
+      card.appendChild(heading);
+      const inner = document.createElement("div");
+      inner.className = "form-grid";
+      (node.children || []).forEach((child) => {
+        inner.appendChild(createFormNode(child, depth + 1));
+      });
+      card.appendChild(inner);
+      field.appendChild(card);
+      return field;
+    }
+
+    function createFormNode(node, depth = 0) {
+      if (node.type === "object") return createObjectField(node, depth);
+      if (node.type === "list") return createListField(node);
+      return createScalarField(node);
+    }
+
+    (yamlSchema.children || [])
+      .filter((node) => node.key !== "risk_radar")
+      .forEach((node) => recordForm.appendChild(createFormNode(node)));
+
+    const radarSchema = (yamlSchema.children || []).find((node) => node.key === "risk_radar");
+    const radarAxes = (radarSchema?.children || []).map((node) => {
+      const key = pathKey(node.path);
+      const currentValue = Number(formState[key]) || 3;
+      formState[key] = String(currentValue);
+      return {
+        key: node.key,
+        label: radarLabelMap[node.key] || prettyKey(node.key),
+        path: node.path,
+        value: currentValue
+      };
+    });
+
+
+    const tagList = document.getElementById("tagList");
+
+    doc.tags.forEach((tag) => {
+      const tagEl = document.createElement("span");
+      tagEl.className = "chip searchable";
+      tagEl.dataset.section = "references";
+      tagEl.dataset.search = tag.toLowerCase();
+      tagEl.textContent = tag;
+      tagList.appendChild(tagEl);
+    });
+
+    const referenceList = document.getElementById("referenceList");
+    doc.references.forEach((ref, index) => {
+      const card = document.createElement("div");
+      card.className = "reference-card searchable";
+      card.dataset.section = "references";
+      card.dataset.search = ref.toLowerCase();
+      card.innerHTML = `<div class="reference-index">${index + 1}</div><p>${renderInline(escapeHtml(ref))}</p>`;
+      referenceList.appendChild(card);
+    });
+
+    const questionTotal = doc.questionnaire.reduce((sum, group) => sum + group.items.length, 0);
+    const deepPromptTotal = doc.deepTalk.reduce((sum, group) => sum + group.prompts.length, 0);
+    document.getElementById("stat-question-count").textContent = String(questionTotal);
+    document.getElementById("stat-scenario-count").textContent = String(doc.scenarios.length);
+    document.getElementById("stat-prompt-count").textContent = String(deepPromptTotal);
+    document.getElementById("questionnaireCount").textContent = `${questionTotal} 个条目`;
+    document.getElementById("scenarioCount").textContent = `${doc.scenarios.length} 张卡片`;
+    document.getElementById("deepTalkCount").textContent = `${deepPromptTotal} 个追问`;
+
+    const tocItems = [
+      ["overview", "模块总览"],
+      ["questionnaire", "镜像问卷"],
+      ["scenario-cards", "情景讨论卡"],
+      ["deep-talk", "深聊手册"],
+      ["workspace", "结果记录与风险雷达"],
+      ["references", "标签、来源与原文归档"]
+    ];
+
+    const toc = document.getElementById("toc");
+    tocItems.forEach(([id, label]) => {
+      const link = document.createElement("a");
+      link.href = `#${id}`;
+      link.textContent = label;
+      toc.appendChild(link);
+    });
+
+    const chipConfig = [
+      ["all", "全部"],
+      ["questionnaire", "镜像问卷"],
+      ["scenario", "情景卡"],
+      ["deepTalk", "深聊手册"],
+      ["workspace", "结果记录"],
+      ["references", "标签/来源"]
+    ];
+
+    const chipsEl = document.getElementById("chips");
+    let activeSection = "all";
+    chipConfig.forEach(([key, label], index) => {
+      const chip = document.createElement("button");
+      chip.className = `chip ${index === 0 ? "active" : ""}`;
+      chip.type = "button";
+      chip.dataset.filter = key;
+      chip.textContent = label;
+      chip.addEventListener("click", () => {
+        activeSection = key;
+        [...chipsEl.querySelectorAll(".chip")].forEach((item) => item.classList.toggle("active", item.dataset.filter === key));
+        applyFilters();
+      });
+      chipsEl.appendChild(chip);
+    });
+
+    const radarControls = document.getElementById("radarControls");
+    radarAxes.forEach((axis) => {
+      const row = document.createElement("div");
+      row.className = "slider-row";
+      row.innerHTML = `
+        <span>${axis.label}</span>
+        <input type="range" min="1" max="5" value="${axis.value}" data-key="${axis.key}" />
+        <output>${axis.value}</output>
+      `;
+      const input = row.querySelector("input");
+      const output = row.querySelector("output");
+      input.addEventListener("input", () => {
+        axis.value = Number(input.value);
+        output.value = input.value;
+        drawRadar();
+        updateYamlTemplate();
+      });
+      radarControls.appendChild(row);
+    });
+
+    const canvas = document.getElementById("radarCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawRadar() {
+      const w = canvas.width;
+      const h = canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = Math.min(w, h) * 0.34;
+      ctx.clearRect(0, 0, w, h);
+
+      for (let level = 1; level <= 5; level += 1) {
+        ctx.beginPath();
+        radarAxes.forEach((axis, index) => {
+          const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+          const r = radius * (level / 5);
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
+          if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.strokeStyle = level === 5 ? "rgba(148,163,184,0.28)" : "rgba(148,163,184,0.12)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      radarAxes.forEach((axis, index) => {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = "rgba(148,163,184,0.16)";
+        ctx.stroke();
+
+        const labelX = cx + Math.cos(angle) * (radius + 34);
+        const labelY = cy + Math.sin(angle) * (radius + 34);
+        ctx.fillStyle = "#dce7f8";
+        ctx.font = "14px Segoe UI, Microsoft YaHei, sans-serif";
+        ctx.textAlign = labelX < cx - 10 ? "right" : labelX > cx + 10 ? "left" : "center";
+        ctx.textBaseline = labelY < cy ? "bottom" : "top";
+        ctx.fillText(axis.label, labelX, labelY);
+      });
+
+      ctx.beginPath();
+      radarAxes.forEach((axis, index) => {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+        const r = radius * (axis.value / 5);
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      const gradient = ctx.createLinearGradient(cx - radius, cy - radius, cx + radius, cy + radius);
+      gradient.addColorStop(0, "rgba(125,211,252,0.42)");
+      gradient.addColorStop(1, "rgba(167,139,250,0.28)");
+      ctx.fillStyle = gradient;
+      ctx.strokeStyle = "rgba(125,211,252,0.95)";
+      ctx.lineWidth = 2;
+      ctx.fill();
+      ctx.stroke();
+
+      radarAxes.forEach((axis, index) => {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * index / radarAxes.length);
+        const r = radius * (axis.value / 5);
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = "#7dd3fc";
+        ctx.fill();
+        ctx.strokeStyle = "rgba(3,7,18,0.9)";
+        ctx.stroke();
+      });
+    }
+
+    drawRadar();
+    updateYamlTemplate();
+
+    const searchInput = document.getElementById("searchInput");
+    const emptyState = document.getElementById("emptyState");
+
+    function applyFilters() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+      document.querySelectorAll(".filterable-section").forEach((section) => {
+        const sectionKey = section.dataset.section;
+        const allowed = activeSection === "all" || activeSection === sectionKey;
+        section.classList.toggle("hide", !allowed);
+      });
+
+      document.querySelectorAll(".searchable, .searchable-group").forEach((el) => {
+        const sectionAllowed = activeSection === "all" || el.dataset.section === activeSection || !el.dataset.section;
+        const matched = !keyword || (el.dataset.search || "").includes(keyword);
+        const shouldShow = sectionAllowed && matched;
+        if (el.closest(".filterable-section")?.classList.contains("hide")) return;
+        el.classList.toggle("hide", !shouldShow);
+        if (shouldShow) visibleCount += 1;
+      });
+
+      document.querySelectorAll(".searchable-group").forEach((group) => {
+        if (group.classList.contains("hide")) return;
+        const childCards = [...group.querySelectorAll(".searchable:not(.searchable-group)")].filter((el) => !el.classList.contains("hide"));
+        if (childCards.length === 0 && keyword) {
+          group.classList.add("hide");
+        }
+      });
+
+      const anyVisible = [...document.querySelectorAll(".filterable-section")].some((section) => !section.classList.contains("hide"));
+      emptyState.style.display = visibleCount === 0 && anyVisible ? "block" : "none";
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    document.getElementById("clearFilter").addEventListener("click", () => {
+      searchInput.value = "";
+      activeSection = "all";
+      [...chipsEl.querySelectorAll(".chip")].forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+      applyFilters();
+    });
+
+    function revealTarget(targetId) {
+      if (!targetId) return;
+      searchInput.value = "";
+      activeSection = "all";
+      [...chipsEl.querySelectorAll(".chip")].forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+      applyFilters();
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      let current = target;
+      while (current) {
+        if (current.tagName === "DETAILS") current.open = true;
+        current = current.parentElement;
+      }
+      target.classList.remove("jump-flash");
+      void target.offsetWidth;
+      target.classList.add("jump-flash");
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => target.classList.remove("jump-flash"), 1600);
+    }
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a.code-jump");
+      if (!link) return;
+      event.preventDefault();
+      revealTarget(link.dataset.target);
+      history.replaceState(null, "", `#${link.dataset.target}`);
+    });
+
+    if (window.location.hash.startsWith("#ref-")) {
+      window.setTimeout(() => revealTarget(window.location.hash.slice(1)), 120);
+    }
+
+    document.getElementById("expandAll").addEventListener("click", () => {
+
+      document.querySelectorAll("details.item, details.subsection").forEach((item) => { item.open = true; });
+    });
+
+    document.getElementById("collapseAll").addEventListener("click", () => {
+      document.querySelectorAll("details.item, details.subsection").forEach((item) => { item.open = false; });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const link = [...toc.querySelectorAll("a")].find((item) => item.getAttribute("href") === `#${id}`);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          toc.querySelectorAll("a").forEach((item) => item.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-40% 0px -45% 0px", threshold: 0.01 });
+
+    tocItems.forEach(([id]) => {
+      const target = document.getElementById(id);
+      if (target) observer.observe(target);
+    });
+
+    applyFilters();
+  </script>
+</body>
+</html>
