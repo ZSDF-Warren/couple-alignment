@@ -5,7 +5,7 @@
     "display_title": "M01 关系目标、婚姻意义与承诺",
     "module_prefix": "M01",
     "output": "d:/marriage/markdown-archive/web_archive/M01_关系目标-婚姻意义-承诺/index.html",
-    "status": "generated"
+    "status": "preserved"
   },
   {
     "source_name": "M02_情绪需求-沟通-冲突-修复.md",
@@ -45,6 +45,6 @@
     "display_title": "M06 生活方式、职业城市选择、忠诚与长期风险",
     "module_prefix": "M06",
     "output": "d:/marriage/markdown-archive/web_archive/M06_生活方式-职业城市-忠诚与长期风险/index.html",
-    "status": "preserved"
+    "status": "generated"
   }
 ]
