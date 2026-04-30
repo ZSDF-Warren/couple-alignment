@@ -4,47 +4,7 @@
     "folder_name": "M01_关系目标-婚姻意义-承诺",
     "display_title": "M01 关系目标、婚姻意义与承诺",
     "module_prefix": "M01",
-    "output": "d:/marriage/web_archive/M01_关系目标-婚姻意义-承诺/index.html",
-    "status": "skipped"
-  },
-  {
-    "source_name": "M02_情绪需求-沟通-冲突-修复.md",
-    "folder_name": "M02_情绪需求-沟通-冲突-修复",
-    "display_title": "M02 情绪需求、沟通、冲突与修复",
-    "module_prefix": "M02",
-    "output": "d:/marriage/web_archive/M02_情绪需求-沟通-冲突-修复/index.html",
-    "status": "skipped"
-  },
-  {
-    "source_name": "M03_金钱-消费-资源-共同决策.md",
-    "folder_name": "M03_金钱-消费-资源-共同决策",
-    "display_title": "M03 金钱、消费、资源与共同决策",
-    "module_prefix": "M03",
-    "output": "d:/marriage/web_archive/M03_金钱-消费-资源-共同决策/index.html",
-    "status": "skipped"
-  },
-  {
-    "source_name": "M04_原生家庭-家庭边界-婚礼习俗.md",
-    "folder_name": "M04_原生家庭-家庭边界-婚礼习俗",
-    "display_title": "M04 原生家庭、家庭边界与婚礼习俗",
-    "module_prefix": "M04",
-    "output": "d:/marriage/web_archive/M04_原生家庭-家庭边界-婚礼习俗/index.html",
-    "status": "skipped"
-  },
-  {
-    "source_name": "M05_孩子-共同养育-家庭分工.md",
-    "folder_name": "M05_孩子-共同养育-家庭分工",
-    "display_title": "M05 孩子、共同养育与家庭分工",
-    "module_prefix": "M05",
-    "output": "d:/marriage/web_archive/M05_孩子-共同养育-家庭分工/index.html",
-    "status": "skipped"
-  },
-  {
-    "source_name": "M06_生活方式-职业城市-忠诚与长期风险.md",
-    "folder_name": "M06_生活方式-职业城市-忠诚与长期风险",
-    "display_title": "M06 生活方式、职业城市选择、忠诚与长期风险",
-    "module_prefix": "M06",
-    "output": "d:/marriage/web_archive/M06_生活方式-职业城市-忠诚与长期风险/index.html",
-    "status": "skipped"
+    "output": "d:/marriage/markdown-archive/web_archive/M01_关系目标-婚姻意义-承诺/index.html",
+    "status": "generated"
   }
 ]
