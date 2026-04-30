@@ -759,6 +759,59 @@
         align-items: flex-start;
       }
     }
+  
+    .top-nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 18px;
+      padding: 10px 18px;
+      border: 1px solid rgba(125, 211, 252, 0.28);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(10, 17, 33, 0.92), rgba(18, 27, 51, 0.88));
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 32px rgba(2, 6, 23, 0.45);
+    }
+    .top-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.22), rgba(167, 139, 250, 0.22));
+      border: 1px solid rgba(125, 211, 252, 0.42);
+      color: #e5eef8;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+    .top-nav-home:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.32), rgba(167, 139, 250, 0.32));
+      box-shadow: 0 12px 28px rgba(125, 211, 252, 0.18);
+    }
+    .top-nav-home-icon {
+      font-size: 16px;
+      color: #7dd3fc;
+    }
+    .top-nav-meta {
+      color: #95a6c4;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .top-nav-bar { flex-direction: column; align-items: stretch; }
+      .top-nav-meta { text-align: left; }
+    }
   </style>
 </head>
 <body>
@@ -1074,6 +1127,13 @@ risk_radar:
 </script>
 
   <div class="page">
+    <div class="top-nav-bar" role="navigation" aria-label="返回主页">
+      <a class="top-nav-home" href="../index.html">
+        <span class="top-nav-home-icon" aria-hidden="true">&#8592;</span>
+        <span class="top-nav-home-text">返回模块总览</span>
+      </a>
+      <span class="top-nav-meta">M06 · M06 生活方式、职业城市选择、忠诚与长期风险</span>
+    </div>
     <section class="hero" id="top">
       <div class="eyebrow">Interactive Module Archive</div>
       <h1>M06 生活方式、职业城市选择、忠诚与长期风险</h1>
@@ -1270,7 +1330,7 @@ risk_radar:
         </section>
 
         <div class="empty-state" id="emptyState">当前筛选下没有匹配内容，换个关键词试试。</div>
-        <p class="footer-note">归档位置：d:/marriage/web_archive/M06_生活方式-职业城市-忠诚与长期风险/index.html</p>
+        <p class="footer-note">模块编号：M06 · 构建时间：2026-04-30 11:10</p>
       </main>
     </div>
   </div>

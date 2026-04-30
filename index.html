@@ -1,15 +1,173 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=./couple-alignment-modules/index.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Couple Alignment 模块网页归档</title>
-  <script>
-    window.location.replace("./couple-alignment-modules/index.html");
-  </script>
+  <style>
+    :root {
+      --bg: #09111f;
+      --card: rgba(14, 23, 42, 0.82);
+      --card-strong: rgba(15, 23, 42, 0.94);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5eef8;
+      --muted: #95a6c4;
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --shadow: 0 24px 64px rgba(2, 6, 23, 0.45);
+      --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.14), transparent 25%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.14), transparent 25%),
+        linear-gradient(180deg, #060a16 0%, #09111f 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .page { width: min(1200px, calc(100vw - 48px)); margin: 0 auto; padding: 40px 0 64px; }
+    .hero {
+      padding: 32px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(7, 13, 28, 0.94), rgba(17, 25, 47, 0.86));
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--accent);
+      border: 1px solid rgba(125, 211, 252, 0.24);
+      background: rgba(10, 17, 33, 0.72);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+    h1 { margin: 18px 0 12px; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.08; }
+    .lead { margin: 0; color: var(--muted); line-height: 1.85; max-width: 820px; }
+    .meta { margin-top: 14px; font-size: 13px; color: var(--muted); letter-spacing: 0.02em; }
+
+    .section { margin-top: 32px; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .section-head h2 { margin: 0; font-size: 22px; }
+    .section-head .section-sub { color: var(--muted); font-size: 13px; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      display: block;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: rgba(125, 211, 252, 0.3); background: rgba(16, 26, 48, 0.92); }
+    .code {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(125, 211, 252, 0.08);
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .card h3 { margin: 14px 0 8px; font-size: 20px; color: var(--text); }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .empty { color: var(--muted); }
+
+    .changelog {
+      padding: 26px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .entry { padding: 18px 0; border-top: 1px solid var(--line); }
+    .entry:first-of-type { border-top: none; padding-top: 6px; }
+    .entry-title { margin: 0 0 8px; font-size: 15px; color: var(--accent); letter-spacing: 0.01em; font-weight: 600; }
+    .entry-note { margin: 0 0 6px; color: var(--text); font-size: 14px; line-height: 1.7; }
+    .entry-list { margin: 4px 0 0 18px; padding: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .entry-list li { margin: 2px 0; }
+    .entry-empty { color: var(--muted); margin: 0; }
+
+    .footer { margin-top: 28px; text-align: center; color: var(--muted); font-size: 12px; }
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+      .page { width: min(100vw - 24px, 1200px); padding-top: 20px; }
+    }
+  </style>
 </head>
 <body>
-  <p>正在跳转到归档入口页：<a href="./couple-alignment-modules/index.html">打开 Couple Alignment 模块网页归档</a></p>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">Couple Alignment</div>
+      <h1>模块网页归档</h1>
+      <p class="lead">伴侣深度讨论工具的模块归档站点。覆盖关系目标、情绪与沟通、金钱、原生家庭、孩子与共同养育、生活方式等主题。每个模块页支持搜索、折叠、编号跳转、结果记录表单和实时 YAML。</p>
+      <p class="meta">共收录 6 个模块</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>模块总览</h2>
+        <span class="section-sub">点击任一模块进入详情</span>
+      </div>
+      <div class="grid">
+      <a class="card" href="./M01_关系目标-婚姻意义-承诺/index.html">
+        <div class="code">M01</div>
+        <h3>M01 关系目标、婚姻意义与承诺</h3>
+        <p>M01_关系目标-婚姻意义-承诺.md</p>
+      </a>
+      <a class="card" href="./M02_情绪需求-沟通-冲突-修复/index.html">
+        <div class="code">M02</div>
+        <h3>M02 情绪需求、沟通、冲突与修复</h3>
+        <p>M02_情绪需求-沟通-冲突-修复.md</p>
+      </a>
+      <a class="card" href="./M03_金钱-消费-资源-共同决策/index.html">
+        <div class="code">M03</div>
+        <h3>M03 金钱、消费、资源与共同决策</h3>
+        <p>M03_金钱-消费-资源-共同决策.md</p>
+      </a>
+      <a class="card" href="./M04_原生家庭-家庭边界-婚礼习俗/index.html">
+        <div class="code">M04</div>
+        <h3>M04 原生家庭、家庭边界与婚礼习俗</h3>
+        <p>M04_原生家庭-家庭边界-婚礼习俗.md</p>
+      </a>
+      <a class="card" href="./M05_孩子-共同养育-家庭分工/index.html">
+        <div class="code">M05</div>
+        <h3>M05 孩子、共同养育与家庭分工</h3>
+        <p>M05_孩子-共同养育-家庭分工.md</p>
+      </a>
+      <a class="card" href="./M06_生活方式-职业城市-忠诚与长期风险/index.html">
+        <div class="code">M06</div>
+        <h3>M06 生活方式、职业城市选择、忠诚与长期风险</h3>
+        <p>M06_生活方式-职业城市-忠诚与长期风险.md</p>
+      </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>最近更新</h2>
+        <span class="section-sub">最多展示最近 10 条</span>
+      </div>
+      <div class="changelog">
+        <article class="entry"><h3 class="entry-title">2026-04-30 11:11 — 入口页合并：项目简介 + 模块卡片 + 修改日志在同一页；移除 couple-alignment-modules 中间层</h3><ul class="entry-list"><li>M01_关系目标-婚姻意义-承诺 — M01 关系目标、婚姻意义与承诺</li><li>M02_情绪需求-沟通-冲突-修复 — M02 情绪需求、沟通、冲突与修复</li><li>M03_金钱-消费-资源-共同决策 — M03 金钱、消费、资源与共同决策</li><li>M04_原生家庭-家庭边界-婚礼习俗 — M04 原生家庭、家庭边界与婚礼习俗</li><li>M05_孩子-共同养育-家庭分工 — M05 孩子、共同养育与家庭分工</li><li>M06_生活方式-职业城市-忠诚与长期风险 — M06 生活方式、职业城市选择、忠诚与长期风险</li></ul></article>
+<article class="entry"><h3 class="entry-title">2026-04-30 10:59 — 引入 couple-module-publish skill，模块页加返回主页按钮，根部改为欢迎页+修改日志</h3><ul class="entry-list"><li>M01_关系目标-婚姻意义-承诺 — M01 关系目标、婚姻意义与承诺</li><li>M02_情绪需求-沟通-冲突-修复 — M02 情绪需求、沟通、冲突与修复</li><li>M03_金钱-消费-资源-共同决策 — M03 金钱、消费、资源与共同决策</li><li>M04_原生家庭-家庭边界-婚礼习俗 — M04 原生家庭、家庭边界与婚礼习俗</li><li>M05_孩子-共同养育-家庭分工 — M05 孩子、共同养育与家庭分工</li><li>M06_生活方式-职业城市-忠诚与长期风险 — M06 生活方式、职业城市选择、忠诚与长期风险</li></ul></article>
+      </div>
+    </section>
+
+    <p class="footer">本页面由发布流程自动生成，请勿手工编辑。</p>
+  </div>
 </body>
 </html>
